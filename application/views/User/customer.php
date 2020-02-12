@@ -9,50 +9,143 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 text-center mt-2">
-            <h1>User Information</h1>
+            <h1>Customer</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-8 offset-md-2">
+          <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-default">
               <div class="card-header">
-                <h3 class="card-title">Add User</h3>
+                <h3 class="card-title">Add Customer</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="form_action" role="form" action="" method="post">
+              <form class="m-0 input_form" id="form_action" role="form" action="" method="post">
                 <div class="card-body row">
-                  <div class="form-group col-md-12">
-                    <input type="text" class="form-control required title-case text" name="user_name" id="user_name" value="<?php if(isset($user_name)){ echo $user_name; } ?>" placeholder="Enter Name of User" required>
+                  <div class="col-md-6 py-0 px-3">
+                    <div class="row">
+                      <div class="form-group col-md-12">
+                        <label>Company Name</label>
+                        <input type="text" class="form-control form-control-sm" name="cust_company_name" id="cust_company_name" value="<?php if(isset($cust_company_name)){ echo $cust_company_name; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Contact Name</label>
+                        <input type="text" class="form-control form-control-sm" name="custoner_name" id="custoner_name" value="<?php if(isset($custoner_name)){ echo $custoner_name; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Display Name</label>
+                        <input type="text" class="form-control form-control-sm" name="cust_display_name" id="cust_display_name" value="<?php if(isset($cust_display_name)){ echo $cust_display_name; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>GSTIN</label>
+                        <input type="text" class="form-control form-control-sm" name="customer_gstin" id="customer_gstin" value="<?php if(isset($customer_gstin)){ echo $customer_gstin; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>PAN</label>
+                        <input type="text" class="form-control form-control-sm" name="customer_pan" id="customer_pan" value="<?php if(isset($customer_pan)){ echo $customer_pan; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Composition Scheme</label>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>TDS</label>
+                        <input type="text" class="form-control form-control-sm" name="customer_tds" id="customer_tds" value="<?php if(isset($customer_tds)){ echo $customer_tds; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Comtact Mobile</label>
+                        <input type="text" class="form-control form-control-sm" name="customer_mobile" id="customer_mobile" value="<?php if(isset($customer_mobile)){ echo $customer_mobile; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Work Phone</label>
+                        <input type="text" class="form-control form-control-sm" name="customer_phone" id="customer_phone" value="<?php if(isset($customer_phone)){ echo $customer_phone; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Email Id</label>
+                        <input type="text" class="form-control form-control-sm" name="customer_email" id="customer_email" value="<?php if(isset($customer_email)){ echo $customer_email; } ?>" placeholder="" required>
+                      </div>
+                      <div class="form-group col-md-12 select_sm">
+                        <label>Tags</label>
+                        <select class="form-control select2" name="tag_id" id="tag_id" data-placeholder="Select Tags">
+                          <option value="">Select Tags</option>
+                          <option >1</option>
+                          <option >2</option>
+                          <option >3</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-12 select_sm mb-0">
+                        <label>Ratesheet</label>
+                        <select class="form-control select2" name="ratesheet_id" id="ratesheet_id" data-placeholder="Select Tags" name="">
+                          <option value="">Select Tags</option>
+                          <option >1</option>
+                          <option >2</option>
+                          <option >3</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="user_city" id="user_city" value="<?php if(isset($user_city)){ echo $user_city; } ?>" placeholder="Enter City" required>
-                  </div>
-                  <div class="form-group col-md-12">
-                    <input type="number" class="form-control" name="user_mobile" id="user_mobile" value="<?php if(isset($user_mobile)){ echo $user_mobile; } ?>" placeholder="Enter Mobile No." required>
-                  </div>
-                  <div class="form-group col-md-12">
-                    <input type="email" class="form-control" name="user_email" id="user_email" value="<?php if(isset($user_email)){ echo $user_email; } ?>" placeholder="Enter Email Id." required>
-                  </div>
-                  <div class="form-group col-md-12">
-                    <input type="password" class="form-control " name="user_password" id="user_password" value="<?php if(isset($user_password)){ echo $user_password; } ?>" placeholder="Enter Password" required>
+                  <div class="col-md-6 py-0 px-3">
+                    <div class="row">
+                      <div class="form-group col-md-12">
+                        <label>Billing Address</label>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <input type="text" class="form-control form-control-sm" name="customer_addr1" id="customer_addr1" value="<?php if(isset($customer_addr1)){ echo $customer_addr1; } ?>" placeholder="Address1" required>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <input type="text" class="form-control form-control-sm" name="customer_addr2" id="customer_addr2" value="<?php if(isset($customer_addr2)){ echo $customer_addr2; } ?>" placeholder="Address2" required>
+                      </div>
+                      <div class="form-group col-md-6 mb-5">
+                        <input type="text" class="form-control form-control-sm" name="customer_city" id="customer_city" value="<?php if(isset($customer_city)){ echo $customer_city; } ?>" placeholder="City/Town" required>
+                      </div>
+                      <div class="form-group col-md-6 mb-5">
+                        <input type="text" class="form-control form-control-sm" name="customer_pin" id="customer_pin" value="<?php if(isset($customer_pin)){ echo $customer_pin; } ?>" placeholder="Postal/Zip Code" required>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label>Shipping address</label>
+                      </div>
+                      <div class="form-group col-md-6 text-right">
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" name="is_addr_same" id="is_addr_same" value="1" checked>
+                          <label for="is_addr_same" class="custom-control-label">Same as billing address</label>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <input type="text" class="form-control form-control-sm" name="customer_s_addr1" id="customer_s_addr1" value="<?php if(isset($customer_s_addr1)){ echo $customer_s_addr1; } ?>" placeholder="Address1" required>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <input type="text" class="form-control form-control-sm" name="customer_s_addr2" id="customer_s_addr2" value="<?php if(isset($customer_s_addr2)){ echo $customer_s_addr2; } ?>" placeholder="Address2" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control form-control-sm" name="customer_s_city" id="customer_s_city" value="<?php if(isset($customer_s_city)){ echo $customer_s_city; } ?>" placeholder="City/Town" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input type="text" class="form-control form-control-sm" name="customer_s_pin" id="customer_s_pin" value="<?php if(isset($customer_s_pin)){ echo $customer_s_pin; } ?>" placeholder="Postal/Zip Code" required>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <?php if(isset($update)){ ?>
-                    <button id="btn_update" type="submit" class="btn btn-primary">Update </button>
-                  <?php } else{ ?>
-                    <button id="btn_save" type="submit" class="btn btn-success px-4">Add</button>
-                  <?php } ?>
-                  <a href="<?php echo base_url() ?>User/dashboard" class="btn btn-default ml-4">Cancel</a>
+                <div class="card-footer row">
+                  <div class="col-md-6">
+                    <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" name="customer_status" id="customer_status" value="1" checked>
+                      <label for="customer_status" class="custom-control-label">Active</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <?php if(isset($update)){ ?>
+                      <button id="btn_update" type="submit" class="btn btn-primary">Update </button>
+                    <?php } else{ ?>
+                      <button id="btn_save" type="submit" class="btn btn-success px-4">Save</button>
+                    <?php } ?>
+                    <a href="<?php echo base_url() ?>User/customer_list" class="btn btn-default ml-4">Cancel</a>
+                  </div>
                 </div>
               </form>
             </div>
