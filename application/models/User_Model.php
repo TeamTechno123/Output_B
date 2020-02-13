@@ -18,38 +18,66 @@ class User_Model extends CI_Model{
   }
 
   public function get_list($company_id,$id,$order,$tbl_name){
-    $query = $this->db->select('*')
-            ->where('company_id', $company_id)
-            ->order_by($id, $order)
-            ->from($tbl_name)
-            ->get();
+    $this->db->select('*');
+    if($company_id != ''){
+      $this->db->where('company_id', $company_id);
+    }
+    $this->db->order_by($id, $order);
+    $this->db->from($tbl_name);
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
 
   public function get_list2($id,$order,$tbl_name){
-    $query = $this->db->select('*')
-            ->order_by($id, $order)
-            ->from($tbl_name)
-            ->get();
+    $this->db->select('*');
+    $this->db->order_by($id, $order);
+    $this->db->from($tbl_name);
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  public function get_list_by_id($col_name1,$col_val1,$col_name2,$col_val2,$order_col,$order,$tbl_name){
+    $this->db->select('*');
+    if($col_name1 != ''){
+      $this->db->where($col_name1,$col_val1);
+    }
+    if($col_name2 != ''){
+      $this->db->where($col_name2,$col_val2);
+    }
+    if($order_col != ''){
+      $this->db->order_by($order_col, $order);
+    }
+    $this->db->from($tbl_name);
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
 
   public function get_info($id_type, $id, $tbl_name){
-    $query = $this->db->select('*')
-            ->where($id_type, $id)
-            ->from($tbl_name)
-            ->get();
+    $this->db->select('*');
+    $this->db->where($id_type, $id);
+    $this->db->from($tbl_name);
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
 
   public function get_info_arr($id_type, $id, $tbl_name){
-    $query = $this->db->select('*')
-            ->where($id_type, $id)
-            ->from($tbl_name)
-            ->get();
+    $this->db->select('*');
+    $this->db->where($id_type, $id);
+    $this->db->from($tbl_name);
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result;
+  }
+
+  public function get_info_arr_fields($fields,$id_type, $id, $tbl_name){
+    $this->db->select($fields);
+    $this->db->where($id_type, $id);
+    $this->db->from($tbl_name);
+    $query = $this->db->get();
     $result = $query->result_array();
     return $result;
   }
@@ -65,21 +93,25 @@ class User_Model extends CI_Model{
   }
 
   public function check_duplication($company_id,$value,$field_name,$table_name){
-    $query = $this->db->select($field_name)
-      // ->where('company_id', $company_id)
-      ->where($field_name,$value)
-      ->from($table_name)
-      ->get();
+    $this->db->select($field_name);
+    if($company_id != ''){
+      $this->db->where('company_id', $company_id);
+    }
+    $this->db->where($field_name,$value);
+    $this->db->from($table_name);
+    $query = $this->db->get();
     $result = $query->num_rows();
     return $result;
   }
 
   public function user_list($company_id){
-    $query = $this->db->select('*')
-      ->where('is_admin', 0)
-      ->where('company_id',$company_id)
-      ->from('user')
-      ->get();
+    $this->db->select('*');
+    $this->db->where('is_admin', 0);
+    if($company_id != ''){
+      $this->db->where('company_id', $company_id);
+    }
+    $this->db->from('user');
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
@@ -94,6 +126,25 @@ class User_Model extends CI_Model{
     $query = $this->db->get();
     $num = $query->num_rows();
     return $num;
+  }
+
+  // Get Count...
+  public function get_count($id_type,$company_id,$added_by,$mat_user_id,$status_col,$status_key,$tbl_name){
+    $this->db->select($id_type);
+    if($company_id != ''){
+      $this->db->where('company_id', $company_id);
+    }
+    if($added_by != ''){
+      $this->db->where($added_by, $mat_user_id);
+    }
+    if($status_col != ''){
+      $this->db->where($status_col, $status_key);
+    }
+
+    $this->db->from($tbl_name);
+      $query =  $this->db->get();
+    $result = $query->num_rows();
+    return $result;
   }
 
   // function check_otp($otp, $user_id){

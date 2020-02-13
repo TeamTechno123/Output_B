@@ -8,6 +8,12 @@ class User extends CI_Controller{
     // $this->load->model('Transaction_Model');
   }
 
+  public function logout(){
+    $this->session->sess_destroy();
+    header('location:'.base_url().'User');
+  }
+
+/**************************      Login      ********************************/
   public function index(){
     $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
     $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -32,6 +38,7 @@ class User extends CI_Controller{
     }
   }
 
+/**************************      Dashboard      ********************************/
   public function dashboard(){
     $out_user_id = $this->session->userdata('out_user_id');
     $out_company_id = $this->session->userdata('out_company_id');
@@ -43,6 +50,9 @@ class User extends CI_Controller{
     $this->load->view('Include/footer');
   }
 
+/**************************      Company Information      ********************************/
+
+  // Company List...
   public function company_information_list(){
     $out_user_id = $this->session->userdata('out_user_id');
     $out_company_id = $this->session->userdata('out_company_id');
@@ -122,7 +132,7 @@ class User extends CI_Controller{
 /**************************************************************************************/
 
 
-/*****                User Information                     *****/
+/*******************************    User Information      ****************************/
 
   // Add New User....
   public function add_user(){
@@ -211,15 +221,376 @@ class User extends CI_Controller{
     header('location:'.base_url().'User/user_list');
   }
 
+/***********************     Item Account Group Information      ******************************/
 
-/*****                 Customer Information                     *****/
+  // Item Account Group List...
+  public function item_group_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['item_group_list'] = $this->User_Model->get_list($out_company_id,'item_group_id','ASC','item_group');
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/item_group_list',$data);
+    $this->load->view('Include/footer',$data);
+  }
+
+  // Add Item Account Group...
+  public function item_group(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_group_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $save_data['item_group_name'] = $this->input->post('item_group_name');
+      $save_data['company_id'] = $out_company_id;
+      $save_data['item_group_addedby'] = $out_user_id;
+      $this->User_Model->save_data('item_group', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/item_group_list');
+    }
+    $this->load->view('Include/head');
+    $this->load->view('Include/navbar');
+    $this->load->view('User/item_group');
+    $this->load->view('Include/footer');
+  }
+
+  // Edit Item Account Group...
+  public function edit_item_group($item_group_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_group_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $update_data['item_group_name'] = $this->input->post('item_group_name');
+      $this->User_Model->update_info('item_group_id', $item_group_id, 'item_group', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/item_group_list');
+    }
+    $item_group_info = $this->User_Model->get_info_arr('item_group_id',$item_group_id,'item_group');
+    if(!$item_group_info){ header('location:'.base_url().'User/item_group_list'); }
+    $data['update'] = 'update';
+    $data['item_group_name'] = $item_group_info[0]['item_group_name'];
+
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/item_group', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete User....
+  public function delete_item_group($item_group_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('item_group_id', $item_group_id, 'item_group');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/item_group_list');
+  }
+
+/*****************************   Item Account Information   *****************************/
+
+  public function item_account_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['item_account_list'] = $this->User_Model->get_list($out_company_id,'item_account_id','ASC','item_account');
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/item_account_list',$data);
+    $this->load->view('Include/footer',$data);
+  }
+
+  public function item_account(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_account_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $save_data['item_group_id'] = $this->input->post('item_group_id');
+      $save_data['item_account_name'] = $this->input->post('item_account_name');
+      $save_data['company_id'] = $out_company_id;
+      $save_data['item_account_addedby'] = $out_user_id;
+      $this->User_Model->save_data('item_account', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/item_account_list');
+    }
+    $data['item_group_list'] = $this->User_Model->get_list($out_company_id,'item_group_id','ASC','item_group');
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/item_account', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Edit Item Account...
+  public function edit_item_account($item_account_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_account_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $update_data['item_group_id'] = $this->input->post('item_group_id');
+      $update_data['item_account_name'] = $this->input->post('item_account_name');
+      $this->User_Model->update_info('item_account_id', $item_account_id, 'item_account', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/item_account_list');
+    }
+    $item_account_info = $this->User_Model->get_info_arr('item_account_id',$item_account_id,'item_account');
+    if(!$item_account_info){ header('location:'.base_url().'User/item_account_list'); }
+    $data['update'] = 'update';
+    $data['item_group_id'] = $item_account_info[0]['item_group_id'];
+    $data['item_account_name'] = $item_account_info[0]['item_account_name'];
+    $data['item_group_list'] = $this->User_Model->get_list($out_company_id,'item_group_id','ASC','item_group');
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/item_account', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete Item Account....
+  public function delete_item_account($item_account_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('item_account_id', $item_account_id, 'item_account');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/item_account_list');
+  }
+
+/*******************************  Item Category Information  ****************************/
+
+  // Item Category List...
+  public function item_category_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['item_category_list'] = $this->User_Model->get_list($out_company_id,'item_category_id','ASC','item_category');
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/item_category_list',$data);
+    $this->load->view('Include/footer',$data);
+  }
+
+  //Add Item Category...
+  public function item_category(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_category_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $save_data['item_category_name'] = $this->input->post('item_category_name');
+      $save_data['company_id'] = $out_company_id;
+      $save_data['item_category_addedby'] = $out_user_id;
+      $this->User_Model->save_data('item_category', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/item_category_list');
+    }
+    $this->load->view('Include/head');
+    $this->load->view('Include/navbar');
+    $this->load->view('User/item_category');
+    $this->load->view('Include/footer');
+  }
+
+  // Edit Item Category...
+  public function edit_item_category($item_category_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_category_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $update_data['item_category_name'] = $this->input->post('item_category_name');
+      $this->User_Model->update_info('item_category_id', $item_category_id, 'item_category', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/item_category_list');
+    }
+    $item_category_info = $this->User_Model->get_info_arr('item_category_id',$item_category_id,'item_category');
+    if(!$item_category_info){ header('location:'.base_url().'User/item_category_list'); }
+    $data['update'] = 'update';
+    $data['item_category_name'] = $item_category_info[0]['item_category_name'];
+
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/item_category', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete Item Category....
+  public function delete_item_category($item_category_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('item_category_id', $item_category_id, 'item_category');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/item_category_list');
+  }
+
+
+/*******************************  Tags Information  ****************************/
+
+  // Tags List...
+  public function tags_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['tags_list'] = $this->User_Model->get_list($out_company_id,'tags_id','ASC','tags');
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/tags_list',$data);
+    $this->load->view('Include/footer',$data);
+  }
+
+  //Add Tags
+  public function tags(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('tags_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $save_data['tags_name'] = $this->input->post('tags_name');
+      $save_data['company_id'] = $out_company_id;
+      $save_data['tags_addedby'] = $out_user_id;
+      $this->User_Model->save_data('tags', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/tags_list');
+    }
+    $this->load->view('Include/head');
+    $this->load->view('Include/navbar');
+    $this->load->view('User/tags');
+    $this->load->view('Include/footer');
+  }
+
+  // Edit Tags...
+  public function edit_tags($tags_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('tags_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $update_data['tags_name'] = $this->input->post('tags_name');
+      $this->User_Model->update_info('tags_id', $tags_id, 'tags', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/tags_list');
+    }
+    $tags_info = $this->User_Model->get_info_arr('tags_id',$tags_id,'tags');
+    if(!$tags_info){ header('location:'.base_url().'User/tags_list'); }
+    $data['update'] = 'update';
+    $data['tags_name'] = $tags_info[0]['tags_name'];
+
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/tags', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete Tags....
+  public function delete_tags($tags_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('tags_id', $tags_id, 'tags');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/tags_list');
+  }
+
+/*******************************  Unit Information  ****************************/
+
+  // Unit List...
+  public function unit_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['unit_list'] = $this->User_Model->get_list($out_company_id,'unit_name','ASC','unit');
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/unit_list',$data);
+    $this->load->view('Include/footer',$data);
+  }
+
+  //Add Unit
+  public function unit(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('unit_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $save_data['unit_name'] = $this->input->post('unit_name');
+      $save_data['company_id'] = $out_company_id;
+      $save_data['unit_addedby'] = $out_user_id;
+      $this->User_Model->save_data('unit', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/unit_list');
+    }
+    $this->load->view('Include/head');
+    $this->load->view('Include/navbar');
+    $this->load->view('User/unit');
+    $this->load->view('Include/footer');
+  }
+
+  // Edit Unit...
+  public function edit_unit($unit_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('unit_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $update_data['unit_name'] = $this->input->post('unit_name');
+      $this->User_Model->update_info('unit_id', $unit_id, 'unit', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/unit_list');
+    }
+    $unit_info = $this->User_Model->get_info_arr('unit_id',$unit_id,'unit');
+    if(!$unit_info){ header('location:'.base_url().'User/unit_list'); }
+    $data['update'] = 'update';
+    $data['unit_name'] = $unit_info[0]['unit_name'];
+
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/unit', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete Unit....
+  public function delete_unit($unit_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('unit_id', $unit_id, 'unit');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/unit_list');
+  }
+
+/**************************************************************************************/
+/*******                           Manage Forms                               *********/
+/**************************************************************************************/
+
+/***************************      Customer Information     *****************************/
 
   public function customer_list(){
     $out_user_id = $this->session->userdata('out_user_id');
     $out_company_id = $this->session->userdata('out_company_id');
     $out_roll_id = $this->session->userdata('out_roll_id');
     if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
-    $data['user_list'] = $this->User_Model->user_list($out_company_id);
+    $data['customer_list'] = $this->User_Model->get_list($out_company_id,'customer_id','DESC','customer');
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
     $this->load->view('User/customer_list',$data);
@@ -231,38 +602,543 @@ class User extends CI_Controller{
     $out_company_id = $this->session->userdata('out_company_id');
     $out_roll_id = $this->session->userdata('out_roll_id');
     if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
-    $data['user_list'] = $this->User_Model->user_list($out_company_id);
+    $this->form_validation->set_rules('customer_company', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $date_time = date('d-m-Y H:i:s A');
+      $composition_scheme = $this->input->post('composition_scheme');
+      if(!isset($composition_scheme)){ $composition_scheme = 0; }
+      $is_addr_same = $this->input->post('is_addr_same');
+      if(!isset($is_addr_same)){ $is_addr_same = 0; }
+      $customer_status = $this->input->post('customer_status');
+      if(!isset($customer_status)){ $customer_status = 0; }
+      $save_data = array(
+        'company_id' => $out_company_id,
+        'customer_company' => $this->input->post('customer_company'),
+        'customer_name' => $this->input->post('customer_name'),
+        'customer_display_name' => $this->input->post('customer_display_name'),
+        'customer_gstin' => $this->input->post('customer_gstin'),
+        'customer_pan' => $this->input->post('customer_pan'),
+        'composition_scheme' => $composition_scheme,
+        'customer_tds' => $this->input->post('customer_tds'),
+        'customer_mobile' => $this->input->post('customer_mobile'),
+        'customer_phone' => $this->input->post('customer_phone'),
+        'customer_email' => $this->input->post('customer_email'),
+        'tags_id' => $this->input->post('tags_id'),
+        'ratesheet_id' => $this->input->post('ratesheet_id'),
+        'customer_addr1' => $this->input->post('customer_addr1'),
+        'customer_addr2' => $this->input->post('customer_addr2'),
+        'customer_city' => $this->input->post('customer_city'),
+        'customer_pin' => $this->input->post('customer_pin'),
+        'country_id' => $this->input->post('country_id'),
+        'state_id' => $this->input->post('state_id'),
+        'is_addr_same' => $is_addr_same,
+        'customer_status' => $customer_status,
+        'customer_addedby' => $out_user_id,
+        'customer_added_date' => $date_time,
+        'customer_updateby' => $out_user_id,
+        'customer_update_date' => $date_time,
+      );
+      // Shipping Address...
+      if($is_addr_same == 1){
+        $save_data['customer_s_addr1'] = $this->input->post('customer_addr1');
+        $save_data['customer_s_addr2'] = $this->input->post('customer_addr2');
+        $save_data['customer_s_city'] = $this->input->post('customer_city');
+        $save_data['customer_s_pin'] = $this->input->post('customer_pin');
+        $save_data['country_s_id'] = $this->input->post('country_id');
+        $save_data['state_s_id'] = $this->input->post('state_id');
+      } else{
+        $save_data['customer_s_addr1'] = $this->input->post('customer_s_addr1');
+        $save_data['customer_s_addr2'] = $this->input->post('customer_s_addr2');
+        $save_data['customer_s_city'] = $this->input->post('customer_s_city');
+        $save_data['customer_s_pin'] = $this->input->post('customer_s_pin');
+        $save_data['country_s_id'] = $this->input->post('country_s_id');
+        $save_data['state_s_id'] = $this->input->post('state_s_id');
+      }
+      $this->User_Model->save_data('customer', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/customer_list');
+    }
+    $data['tags_list'] = $this->User_Model->get_list($out_company_id,'tags_id','ASC','tags');
+    $data['country_list'] = $this->User_Model->get_list('','country_name','ASC','country');
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/customer', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+// Edit Customer...
+  public function edit_customer($customer_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('customer_company', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $date_time = date('d-m-Y H:i:s A');
+
+      $composition_scheme = $this->input->post('composition_scheme');
+      if(!isset($composition_scheme)){ $composition_scheme = 0; }
+      $is_addr_same = $this->input->post('is_addr_same');
+      if(!isset($is_addr_same)){ $is_addr_same = 0; }
+      $customer_status = $this->input->post('customer_status');
+      if(!isset($customer_status)){ $customer_status = 0; }
+      $update_data = array(
+        'customer_company' => $this->input->post('customer_company'),
+        'customer_name' => $this->input->post('customer_name'),
+        'customer_display_name' => $this->input->post('customer_display_name'),
+        'customer_gstin' => $this->input->post('customer_gstin'),
+        'customer_pan' => $this->input->post('customer_pan'),
+        'composition_scheme' => $composition_scheme,
+        'customer_tds' => $this->input->post('customer_tds'),
+        'customer_mobile' => $this->input->post('customer_mobile'),
+        'customer_phone' => $this->input->post('customer_phone'),
+        'customer_email' => $this->input->post('customer_email'),
+        'tags_id' => $this->input->post('tags_id'),
+        'ratesheet_id' => $this->input->post('ratesheet_id'),
+        'customer_addr1' => $this->input->post('customer_addr1'),
+        'customer_addr2' => $this->input->post('customer_addr2'),
+        'customer_city' => $this->input->post('customer_city'),
+        'customer_pin' => $this->input->post('customer_pin'),
+        'country_id' => $this->input->post('country_id'),
+        'state_id' => $this->input->post('state_id'),
+        'is_addr_same' => $is_addr_same,
+        'customer_s_addr1' => $this->input->post('customer_s_addr1'),
+        'customer_s_addr2' => $this->input->post('customer_s_addr2'),
+        'customer_s_city' => $this->input->post('customer_s_city'),
+        'customer_s_pin' => $this->input->post('customer_s_pin'),
+        'country_s_id' => $this->input->post('country_s_id'),
+        'state_s_id' => $this->input->post('state_s_id'),
+        'customer_status' => $customer_status,
+        'customer_updateby' => $out_user_id,
+        'customer_update_date' => $date_time,
+      );
+      // Shipping Address...
+      if($is_addr_same == 1){
+        $update_data['customer_s_addr1'] = $this->input->post('customer_addr1');
+        $update_data['customer_s_addr2'] = $this->input->post('customer_addr2');
+        $update_data['customer_s_city'] = $this->input->post('customer_city');
+        $update_data['customer_s_pin'] = $this->input->post('customer_pin');
+        $update_data['country_s_id'] = $this->input->post('country_id');
+        $update_data['state_s_id'] = $this->input->post('state_id');
+      } else{
+        $update_data['customer_s_addr1'] = $this->input->post('customer_s_addr1');
+        $update_data['customer_s_addr2'] = $this->input->post('customer_s_addr2');
+        $update_data['customer_s_city'] = $this->input->post('customer_s_city');
+        $update_data['customer_s_pin'] = $this->input->post('customer_s_pin');
+        $update_data['country_s_id'] = $this->input->post('country_s_id');
+        $update_data['state_s_id'] = $this->input->post('state_s_id');
+      }
+      $this->User_Model->update_info('customer_id', $customer_id, 'customer', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/customer_list');
+    }
+    // Edit Fetch Data...
+    $data['tags_list'] = $this->User_Model->get_list($out_company_id,'tags_id','ASC','tags');
+    $data['country_list'] = $this->User_Model->get_list('','country_name','ASC','country');
+    $customer_info = $this->User_Model->get_info_arr('customer_id',$customer_id,'customer');
+    if(!$customer_info){ header('location:'.base_url().'User/customer_list'); }
+    $data['update'] = 'update';
+    $data['customer_info'] = $customer_info[0];
+    $country_id = $customer_info[0]['country_id'];
+    if(isset($country_id)){
+      $data['state_list'] = $this->User_Model->get_list_by_id('country_id',$country_id,'','','state_name','ASC','state');
+    }
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/customer', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete Tags....
+  public function delete_customer($customer_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('customer_id', $customer_id, 'customer');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/customer_list');
+  }
+
+/**********************      Suppliers Information      *****************************/
+
+  // Suppliers List...
+  public function supplier_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['supplier_list'] = $this->User_Model->get_list($out_company_id,'supplier_id','DESC','supplier');
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
-    $this->load->view('User/customer',$data);
+    $this->load->view('User/supplier_list',$data);
     $this->load->view('Include/footer',$data);
+  }
+
+  // Add Supplier...
+  public function supplier(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('supplier_company', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $date_time = date('d-m-Y H:i:s A');
+      $composition_scheme = $this->input->post('composition_scheme');
+      if(!isset($composition_scheme)){ $composition_scheme = 0; }
+      $is_addr_same = $this->input->post('is_addr_same');
+      if(!isset($is_addr_same)){ $is_addr_same = 0; }
+      $supplier_status = $this->input->post('supplier_status');
+      if(!isset($supplier_status)){ $supplier_status = 0; }
+      $save_data = array(
+        'company_id' => $out_company_id,
+        'supplier_company' => $this->input->post('supplier_company'),
+        'supplier_name' => $this->input->post('supplier_name'),
+        'supplier_display_name' => $this->input->post('supplier_display_name'),
+        'supplier_gstin' => $this->input->post('supplier_gstin'),
+        'supplier_pan' => $this->input->post('supplier_pan'),
+        'composition_scheme' => $composition_scheme,
+        'supplier_tds' => $this->input->post('supplier_tds'),
+        'supplier_mobile' => $this->input->post('supplier_mobile'),
+        'supplier_phone' => $this->input->post('supplier_phone'),
+        'supplier_email' => $this->input->post('supplier_email'),
+        'tags_id' => $this->input->post('tags_id'),
+        'supplier_addr1' => $this->input->post('supplier_addr1'),
+        'supplier_addr2' => $this->input->post('supplier_addr2'),
+        'supplier_city' => $this->input->post('supplier_city'),
+        'supplier_pin' => $this->input->post('supplier_pin'),
+        'country_id' => $this->input->post('country_id'),
+        'state_id' => $this->input->post('state_id'),
+        'is_addr_same' => $is_addr_same,
+        'supplier_status' => $supplier_status,
+        'supplier_addedby' => $out_user_id,
+        'supplier_added_date' => $date_time,
+        'supplier_updateby' => $out_user_id,
+        'supplier_update_date' => $date_time,
+      );
+      // Shipping Address...
+      if($is_addr_same == 1){
+        $save_data['supplier_s_addr1'] = $this->input->post('supplier_addr1');
+        $save_data['supplier_s_addr2'] = $this->input->post('supplier_addr2');
+        $save_data['supplier_s_city'] = $this->input->post('supplier_city');
+        $save_data['supplier_s_pin'] = $this->input->post('supplier_pin');
+        $save_data['country_s_id'] = $this->input->post('country_id');
+        $save_data['state_s_id'] = $this->input->post('state_id');
+      } else{
+        $save_data['supplier_s_addr1'] = $this->input->post('supplier_s_addr1');
+        $save_data['supplier_s_addr2'] = $this->input->post('supplier_s_addr2');
+        $save_data['supplier_s_city'] = $this->input->post('supplier_s_city');
+        $save_data['supplier_s_pin'] = $this->input->post('supplier_s_pin');
+        $save_data['country_s_id'] = $this->input->post('country_s_id');
+        $save_data['state_s_id'] = $this->input->post('state_s_id');
+      }
+      $this->User_Model->save_data('supplier', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/supplier_list');
+    }
+    $data['tags_list'] = $this->User_Model->get_list($out_company_id,'tags_id','ASC','tags');
+    $data['country_list'] = $this->User_Model->get_list('','country_name','ASC','country');
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/supplier', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+// Edit Supplier...
+  public function edit_supplier($supplier_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('supplier_company', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $date_time = date('d-m-Y H:i:s A');
+
+      $composition_scheme = $this->input->post('composition_scheme');
+      if(!isset($composition_scheme)){ $composition_scheme = 0; }
+      $is_addr_same = $this->input->post('is_addr_same');
+      if(!isset($is_addr_same)){ $is_addr_same = 0; }
+      $supplier_status = $this->input->post('supplier_status');
+      if(!isset($supplier_status)){ $supplier_status = 0; }
+      $update_data = array(
+        'supplier_company' => $this->input->post('supplier_company'),
+        'supplier_name' => $this->input->post('supplier_name'),
+        'supplier_display_name' => $this->input->post('supplier_display_name'),
+        'supplier_gstin' => $this->input->post('supplier_gstin'),
+        'supplier_pan' => $this->input->post('supplier_pan'),
+        'composition_scheme' => $composition_scheme,
+        'supplier_tds' => $this->input->post('supplier_tds'),
+        'supplier_mobile' => $this->input->post('supplier_mobile'),
+        'supplier_phone' => $this->input->post('supplier_phone'),
+        'supplier_email' => $this->input->post('supplier_email'),
+        'tags_id' => $this->input->post('tags_id'),
+        'supplier_addr1' => $this->input->post('supplier_addr1'),
+        'supplier_addr2' => $this->input->post('supplier_addr2'),
+        'supplier_city' => $this->input->post('supplier_city'),
+        'supplier_pin' => $this->input->post('supplier_pin'),
+        'country_id' => $this->input->post('country_id'),
+        'state_id' => $this->input->post('state_id'),
+        'is_addr_same' => $is_addr_same,
+        'supplier_s_addr1' => $this->input->post('supplier_s_addr1'),
+        'supplier_s_addr2' => $this->input->post('supplier_s_addr2'),
+        'supplier_s_city' => $this->input->post('supplier_s_city'),
+        'supplier_s_pin' => $this->input->post('supplier_s_pin'),
+        'country_s_id' => $this->input->post('country_s_id'),
+        'state_s_id' => $this->input->post('state_s_id'),
+        'supplier_status' => $supplier_status,
+        'supplier_updateby' => $out_user_id,
+        'supplier_update_date' => $date_time,
+      );
+      // Shipping Address...
+      if($is_addr_same == 1){
+        $update_data['supplier_s_addr1'] = $this->input->post('supplier_addr1');
+        $update_data['supplier_s_addr2'] = $this->input->post('supplier_addr2');
+        $update_data['supplier_s_city'] = $this->input->post('supplier_city');
+        $update_data['supplier_s_pin'] = $this->input->post('supplier_pin');
+        $update_data['country_s_id'] = $this->input->post('country_id');
+        $update_data['state_s_id'] = $this->input->post('state_id');
+      } else{
+        $update_data['supplier_s_addr1'] = $this->input->post('supplier_s_addr1');
+        $update_data['supplier_s_addr2'] = $this->input->post('supplier_s_addr2');
+        $update_data['supplier_s_city'] = $this->input->post('supplier_s_city');
+        $update_data['supplier_s_pin'] = $this->input->post('supplier_s_pin');
+        $update_data['country_s_id'] = $this->input->post('country_s_id');
+        $update_data['state_s_id'] = $this->input->post('state_s_id');
+      }
+      $this->User_Model->update_info('supplier_id', $supplier_id, 'supplier', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/supplier_list');
+    }
+    // Edit Fetch Data...
+    $data['tags_list'] = $this->User_Model->get_list($out_company_id,'tags_id','ASC','tags');
+    $data['country_list'] = $this->User_Model->get_list('','country_name','ASC','country');
+    $supplier_info = $this->User_Model->get_info_arr('supplier_id',$supplier_id,'supplier');
+    if(!$supplier_info){ header('location:'.base_url().'User/supplier_list'); }
+    $data['update'] = 'update';
+    $data['supplier_info'] = $supplier_info[0];
+    $country_id = $supplier_info[0]['country_id'];
+    if(isset($country_id)){
+      $data['state_list'] = $this->User_Model->get_list_by_id('country_id',$country_id,'','','state_name','ASC','state');
+    }
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/supplier', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete Supplier....
+  public function delete_supplier($supplier_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('supplier_id', $supplier_id, 'supplier');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/supplier_list');
+  }
+
+/**********************     Item Information      **********************/
+
+  // Items List...
+  public function item_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['item_list'] = $this->User_Model->get_list($out_company_id,'item_name','ASC','item');
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/item_list',$data);
+    $this->load->view('Include/footer',$data);
+  }
+
+  //Add Item
+  public function item(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $date_time = date('d-m-Y H:i:s A');
+      $in_sales = $this->input->post('in_sales');
+      if(!isset($in_sales)){ $in_sales = 0; }
+      $in_purchase = $this->input->post('in_purchase');
+      if(!isset($in_purchase)){ $in_purchase = 0; }
+      $item_purchase_itc = $this->input->post('item_purchase_itc');
+      if(!isset($item_purchase_itc)){ $item_purchase_itc = 0; }
+      $item_track_inv = $this->input->post('item_track_inv');
+      if(!isset($item_track_inv)){ $item_track_inv = 0; }
+      $item_status = $this->input->post('item_status');
+      if(!isset($item_status)){ $item_status = 0; }
+      $save_data = array(
+        'company_id' => $out_company_id,
+        'item_name' => $this->input->post('item_name'),
+        'item_type' => $this->input->post('item_type'),
+        'in_sales' => $in_sales,
+        'item_sale_rate' => $this->input->post('item_sale_rate'),
+        'item_sale_discount' => $this->input->post('item_sale_discount'),
+        'item_sale_desc' => $this->input->post('item_sale_desc'),
+        'sale_account_id' => $this->input->post('sale_account_id'),
+        'in_purchase' => $in_purchase,
+        'item_purchase_rate' => $this->input->post('item_purchase_rate'),
+        'item_purchase_itc' => $item_purchase_itc,
+        'item_purchase_desc' => $this->input->post('item_purchase_desc'),
+        'purchase_account_id' => $this->input->post('purchase_account_id'),
+        'unit_id' => $this->input->post('unit_id'),
+        'item_barcode' => $this->input->post('item_barcode'),
+        'tax_id' => $this->input->post('tax_id'),
+        'item_category_id' => $this->input->post('item_category_id'),
+        'item_track_inv' => $item_track_inv,
+        'stock_alert_level' => $this->input->post('stock_alert_level'),
+        'item_hsn' => $this->input->post('item_hsn'),
+        'item_hsn' => $this->input->post('item_hsn'),
+        'item_hsn' => $this->input->post('item_hsn'),
+        'item_status' => $item_status,
+        'item_addedby' => $out_user_id,
+        'item_added_date' => $date_time,
+        'item_updateby' => $out_user_id,
+        'item_update_date' => $date_time,
+      );
+      $this->User_Model->save_data('item', $save_data);
+      $this->session->set_flashdata('save_success','success');
+      header('location:'.base_url().'User/item_list');
+    }
+    $data['item_account_list'] = $this->User_Model->get_list($out_company_id,'item_account_id','ASC','item_account');
+    $data['item_category_list'] = $this->User_Model->get_list($out_company_id,'item_category_id','ASC','item_category');
+    $data['unit_list'] = $this->User_Model->get_list($out_company_id,'unit_name','ASC','unit');
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/item', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  public function edit_item($item_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->form_validation->set_rules('item_name', 'Name', 'trim|required');
+    if ($this->form_validation->run() != FALSE) {
+      $date_time = date('d-m-Y H:i:s A');
+      $in_sales = $this->input->post('in_sales');
+      if(!isset($in_sales)){ $in_sales = 0; }
+      $in_purchase = $this->input->post('in_purchase');
+      if(!isset($in_purchase)){ $in_purchase = 0; }
+      $item_purchase_itc = $this->input->post('item_purchase_itc');
+      if(!isset($item_purchase_itc)){ $item_purchase_itc = 0; }
+      $item_track_inv = $this->input->post('item_track_inv');
+      if(!isset($item_track_inv)){ $item_track_inv = 0; }
+      $item_status = $this->input->post('item_status');
+      if(!isset($item_status)){ $item_status = 0; }
+      $update_data = array(
+        'item_name' => $this->input->post('item_name'),
+        'item_type' => $this->input->post('item_type'),
+        'in_sales' => $in_sales,
+        'item_sale_rate' => $this->input->post('item_sale_rate'),
+        'item_sale_discount' => $this->input->post('item_sale_discount'),
+        'item_sale_desc' => $this->input->post('item_sale_desc'),
+        'sale_account_id' => $this->input->post('sale_account_id'),
+        'in_purchase' => $in_purchase,
+        'item_purchase_rate' => $this->input->post('item_purchase_rate'),
+        'item_purchase_itc' => $item_purchase_itc,
+        'item_purchase_desc' => $this->input->post('item_purchase_desc'),
+        'purchase_account_id' => $this->input->post('purchase_account_id'),
+        'unit_id' => $this->input->post('unit_id'),
+        'item_barcode' => $this->input->post('item_barcode'),
+        'tax_id' => $this->input->post('tax_id'),
+        'item_category_id' => $this->input->post('item_category_id'),
+        'item_track_inv' => $item_track_inv,
+        'stock_alert_level' => $this->input->post('stock_alert_level'),
+        'item_hsn' => $this->input->post('item_hsn'),
+        'item_hsn' => $this->input->post('item_hsn'),
+        'item_hsn' => $this->input->post('item_hsn'),
+        'item_status' => $item_status,
+        'item_updateby' => $out_user_id,
+        'item_update_date' => $date_time,
+      );
+      $this->User_Model->update_info('item_id', $item_id, 'item', $update_data);
+      $this->session->set_flashdata('update_success','success');
+      header('location:'.base_url().'User/item_list');
+    }
+    $data['item_account_list'] = $this->User_Model->get_list($out_company_id,'item_account_id','ASC','item_account');
+    $data['item_category_list'] = $this->User_Model->get_list($out_company_id,'item_category_id','ASC','item_category');
+    $data['unit_list'] = $this->User_Model->get_list($out_company_id,'unit_name','ASC','unit');
+    $item_info = $this->User_Model->get_info_arr('item_id',$item_id,'item');
+    if(!$item_info){ header('location:'.base_url().'User/item_list'); }
+    $data['update'] = 'update';
+    $data['item_info'] = $item_info[0];
+    $this->load->view('Include/head', $data);
+    $this->load->view('Include/navbar', $data);
+    $this->load->view('User/item', $data);
+    $this->load->view('Include/footer', $data);
+  }
+
+  // Delete Item....
+  public function delete_item($item_id){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->User_Model->delete_info('item_id', $item_id, 'item');
+    $this->session->set_flashdata('delete_success','success');
+    header('location:'.base_url().'User/item_list');
+  }
+
+/*******************************  Stock Information  ****************************/
+
+  // Stock List...
+  public function stock_list(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $data['stock_list'] = $this->User_Model->user_list($out_company_id);
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/stock_list',$data);
+    $this->load->view('Include/footer',$data);
+  }
+
+  //Add Stock
+  public function stock(){
+    $out_user_id = $this->session->userdata('out_user_id');
+    $out_company_id = $this->session->userdata('out_company_id');
+    $out_roll_id = $this->session->userdata('out_roll_id');
+    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+    $this->load->view('Include/head');
+    $this->load->view('Include/navbar');
+    $this->load->view('User/stock');
+    $this->load->view('Include/footer');
   }
 
 
 
 
-public function logout(){
-  $this->session->sess_destroy();
-  header('location:'.base_url().'User/login');
-}
 
 
 
 
 
+/*******************************  Check Duplication  ****************************/
+  public function check_duplication(){
+    $column_name = $this->input->post('column_name');
+    $column_val = $this->input->post('column_val');
+    $table_name = $this->input->post('table_name');
+    $company_id = '';
+    $cnt = $this->User_Model->check_dupli_num($company_id,$column_val,$column_name,$table_name);
+    echo $cnt;
+  }
 
+  public function get_state_by_country(){
+    $country_id = $this->input->post('country_id');
+    $state_list = $this->User_Model->get_list_by_id('country_id',$country_id,'','','state_name','ASC','state');
+    echo "<option value='' selected >Select State.</option>";
+    foreach ($state_list as $list) {
+      echo "<option value='".$list->state_id."'> ".$list->state_name." </option>";
+    }
+  }
 
-
-
-
-public function check_duplication(){
-  $column_name = $this->input->post('column_name');
-  $column_val = $this->input->post('column_val');
-  $table_name = $this->input->post('table_name');
-  $company_id = '';
-  $cnt = $this->User_Model->check_dupli_num($company_id,$column_val,$column_name,$table_name);
-  echo $cnt;
-}
 
 
 }

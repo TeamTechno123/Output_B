@@ -12,10 +12,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6 mt-1">
-            <h4>Customers</h4>
+            <h4>Items</h4>
           </div>
           <div class="col-sm-6 mt-1 text-right">
-              <a href="customer" class="btn btn-sm btn-primary">Add Customer</a>
+            <a href="item" class="btn btn-sm btn-primary">Add Items</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -26,43 +26,52 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
+            <!-- general form elements -->
             <!-- <div class="card"> -->
-            <div class="card-body p-1">
+            <!-- /.card-header -->
+            <div class="card-body p-0">
               <table id="example1" class="table table-bordered tbl_list">
                 <thead>
                 <tr>
                   <th class="wt_50">#</th>
                   <th>Name</th>
-                  <th>Company Name</th>
-                  <th>Email</th>
-                  <th>Mobile</th>
-                  <th>Balance</th>
+                  <th>Unit</th>
+                  <th>Type</th>
+                  <th>HSN</th>
+                  <th>SKU/Barcode</th>
+                  <th>Categories</th>
                   <th>Modified Date</th>
-                  <th class="wt_50">Action</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php $i = 0;
-                  foreach ($customer_list as $list) {
-                    $i++; ?>
+                  foreach ($item_list as $list) {
+                    $i++;
+                    $unit_info = $this->User_Model->get_info_arr_fields('unit_name','unit_id', $list->unit_id, 'unit');
+                    $item_category = $this->User_Model->get_info_arr_fields('item_category_name','item_category_id', $list->item_category_id, 'item_category');
+                  ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $list->customer_name; ?></td>
-                    <td><?php echo $list->customer_company; ?></td>
-                    <td><?php echo $list->customer_email; ?></td>
-                    <td><?php echo $list->customer_mobile; ?></td>
-                    <td><?php echo $list->customer_mobile; ?></td>
-                    <td><?php echo $list->customer_update_date; ?></td>
+                    <td><?php echo $list->item_name; ?></td>
+                    <td><?php echo $unit_info[0]['unit_name']; ?></td>
+                    <td><?php echo $list->item_type; ?></td>
+                    <td><?php echo $list->item_hsn; ?></td>
+                    <td><?php echo $list->item_barcode; ?></td>
+                    <td><?php echo $item_category[0]['item_category_name']; ?></td>
+                    <td><?php echo $list->item_update_date; ?></td>
                     <td>
-                      <a href="<?php echo base_url(); ?>User/edit_customer/<?php echo $list->customer_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a href="<?php echo base_url(); ?>User/delete_customer/<?php echo $list->customer_id; ?>" onclick="return confirm('Delete this Customer');" class="ml-2 text-danger"> <i class="fa fa-trash"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/edit_item/<?php echo $list->item_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/delete_item/<?php echo $list->item_id; ?>" onclick="return confirm('Delete this Item');" class="ml-2 text-danger"> <i class="fa fa-trash"></i> </a>
                     </td>
-                  </tr>
                   <?php } ?>
+                  </tr>
                 </tbody>
               </table>
             </div>
+            <!-- /.card-body -->
           <!-- </div> -->
+          <!-- /.card -->
           </div>
         </div>
         <!-- /.row -->

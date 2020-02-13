@@ -38,9 +38,11 @@ $page = "make_information_list";
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Sr. No.</th>
+                  <th class="wt_50">#</th>
                   <th>Company Name</th>
-                  <th>Action</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th class="wt_50">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,6 +54,8 @@ $page = "make_information_list";
                     <tr>
                       <td><?php echo $i; ?></td>
                       <td><?php echo $list->company_name; ?></td>
+                      <td><?php echo $list->company_mob1; ?></td>
+                      <td><?php echo $list->company_email; ?></td>
                       <td>
                         <a href="<?php echo base_url(); ?>User/edit_company/<?php echo $list->company_id; ?>"> <i class="fa fa-edit"></i> </a>
                       </td>

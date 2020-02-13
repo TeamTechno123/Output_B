@@ -12,10 +12,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6 mt-1">
-            <h4>Customers</h4>
+            <h4>Suppliers</h4>
           </div>
           <div class="col-sm-6 mt-1 text-right">
-              <a href="customer" class="btn btn-sm btn-primary">Add Customer</a>
+            <a href="supplier" class="btn btn-sm btn-primary">Add Supplier</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -26,8 +26,10 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
+            <!-- general form elements -->
             <!-- <div class="card"> -->
-            <div class="card-body p-1">
+            <!-- /.card-header -->
+            <div class="card-body p-0">
               <table id="example1" class="table table-bordered tbl_list">
                 <thead>
                 <tr>
@@ -38,31 +40,33 @@
                   <th>Mobile</th>
                   <th>Balance</th>
                   <th>Modified Date</th>
-                  <th class="wt_50">Action</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php $i = 0;
-                  foreach ($customer_list as $list) {
+                  foreach ($supplier_list as $list) {
                     $i++; ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $list->customer_name; ?></td>
-                    <td><?php echo $list->customer_company; ?></td>
-                    <td><?php echo $list->customer_email; ?></td>
-                    <td><?php echo $list->customer_mobile; ?></td>
-                    <td><?php echo $list->customer_mobile; ?></td>
-                    <td><?php echo $list->customer_update_date; ?></td>
+                    <td><?php echo $list->supplier_name; ?></td>
+                    <td><?php echo $list->supplier_company; ?></td>
+                    <td><?php echo $list->supplier_email; ?></td>
+                    <td><?php echo $list->supplier_mobile; ?></td>
+                    <td><?php echo $list->supplier_mobile; ?></td>
+                    <td><?php echo $list->supplier_update_date; ?></td>
                     <td>
-                      <a href="<?php echo base_url(); ?>User/edit_customer/<?php echo $list->customer_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a href="<?php echo base_url(); ?>User/delete_customer/<?php echo $list->customer_id; ?>" onclick="return confirm('Delete this Customer');" class="ml-2 text-danger"> <i class="fa fa-trash"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/edit_supplier/<?php echo $list->supplier_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/delete_supplier/<?php echo $list->supplier_id; ?>" onclick="return confirm('Delete this Customer');" class="ml-2 text-danger"> <i class="fa fa-trash"></i> </a>
                     </td>
                   </tr>
                   <?php } ?>
                 </tbody>
               </table>
-            </div>
-          <!-- </div> -->
+            <!-- </div> -->
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
           </div>
         </div>
         <!-- /.row -->

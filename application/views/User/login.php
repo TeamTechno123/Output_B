@@ -6,7 +6,6 @@
   <title>Admin | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -29,7 +28,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
       <form method="post" action="">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -38,7 +37,7 @@
         </div>
         <span class="text-red"> <?php echo form_error('email'); ?> </span>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -57,18 +56,31 @@
       <p class="mb-1">
         <a href="#">I forgot my password</a>
       </p>
+      <div class="alert alert-danger p-2 msg_invalid" style="display:none" role="alert">
+        Invalid Information
+      </div>
     </div>
     <!-- /.login-card-body -->
   </div>
+
+
+
+
 </div>
 <!-- /.login-box -->
-
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
-
+<script type="text/javascript">
+<?php if($this->session->flashdata('msg')){ ?>
+  $(document).ready(function(){
+    // alert();
+    $('.msg_invalid').show().delay(5000).fadeOut();
+  });
+<?php } ?>
+</script>
 </body>
 </html>

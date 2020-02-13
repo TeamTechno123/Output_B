@@ -25,6 +25,41 @@
     font-size: .875rem;
 }
 
+.div_left{
+  border: 1px solid rgba(34,36,38,.15) !important;
+  border-right: none !important;
+  border-radius: 5px;
+}
+.div_right{
+  border: 1px solid rgba(34,36,38,.15) !important;
+  border-radius: 5px;
+}
+
+/* Table width */
+.wt_50{
+  width: 50px !important;
+}
+.wt_100{
+  width: 100px !important;
+}
+.wt_150{
+  width: 150px !important;
+}
+
+/* Table */
+.tbl_list{
+  background: #fff !important;
+}
+
+#example1 td{
+  padding:7px 10px !important;
+}
+
+
+
+
+
+
 .note-editing-area{
   height: 180px;
 }
