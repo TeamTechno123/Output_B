@@ -5,6 +5,7 @@ class User extends CI_Controller{
   public function __construct(){
     parent::__construct();
     $this->load->model('User_Model');
+    date_default_timezone_set('Asia/Kolkata');
     // $this->load->model('Transaction_Model');
   }
 

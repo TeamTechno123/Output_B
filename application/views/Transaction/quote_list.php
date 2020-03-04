@@ -12,10 +12,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6 mt-1">
-            <h4>Items</h4>
+            <h4>Quotes</h4>
           </div>
           <div class="col-sm-6 mt-1 text-right">
-            <a href="item" class="btn btn-sm btn-primary">Add Items</a>
+            <a href="quote" class="btn btn-sm btn-primary">Add Quote</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -31,43 +31,38 @@
                 <thead>
                 <tr>
                   <th class="wt_50">#</th>
-                  <th>Name</th>
-                  <th>Unit</th>
-                  <th>Type</th>
-                  <th>HSN</th>
-                  <th>SKU/Barcode</th>
-                  <th>Categories</th>
-                  <th>Modified Date</th>
+                  <th>Date</th>
+                  <th>Quote No</th>
+                  <th>Contact</th>
+                  <th>Ref.No</th>
+                  <th class="wt_50">Status</th>
+                  <th class="wt_50">Amount</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  <?php $i = 0;
-                  foreach ($item_list as $list) {
-                    $i++;
-                    $unit_info = $this->User_Model->get_info_arr_fields('unit_name','unit_id', $list->unit_id, 'unit');
-                    $item_category = $this->User_Model->get_info_arr_fields('item_category_name','item_category_id', $list->item_category_id, 'item_category');
-                  ?>
+                  <!-- <?php $i = 0;
+                  foreach ($supplier_list as $list) {
+                    $i++; ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $list->item_name; ?></td>
-                    <td><?php echo $unit_info[0]['unit_name']; ?></td>
-                    <td><?php echo $list->item_type; ?></td>
-                    <td><?php echo $list->item_hsn; ?></td>
-                    <td><?php echo $list->item_barcode; ?></td>
-                    <td><?php echo $item_category[0]['item_category_name']; ?></td>
-                    <td><?php echo $list->item_update_date; ?></td>
+                    <td><?php echo $list->supplier_name; ?></td>
+                    <td><?php echo $list->supplier_company; ?></td>
+                    <td><?php echo $list->supplier_email; ?></td>
+                    <td><?php echo $list->supplier_mobile; ?></td>
+                    <td><?php echo $list->supplier_mobile; ?></td>
+                    <td><?php echo $list->supplier_update_date; ?></td>
                     <td>
-                      <a href="<?php echo base_url(); ?>User/edit_item/<?php echo $list->item_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a href="<?php echo base_url(); ?>User/delete_item/<?php echo $list->item_id; ?>" onclick="return confirm('Delete this Item');" class="ml-2 text-danger"> <i class="fa fa-trash"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/edit_supplier/<?php echo $list->supplier_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/delete_supplier/<?php echo $list->supplier_id; ?>" onclick="return confirm('Delete this Customer');" class="ml-2 text-danger"> <i class="fa fa-trash"></i> </a>
                     </td>
-                  <?php } ?>
                   </tr>
+                  <?php } ?> -->
                 </tbody>
               </table>
-            </div>
+            <!-- </div> -->
             <!-- /.card-body -->
-          <!-- </div> -->
+          </div>
           <!-- /.card -->
           </div>
         </div>

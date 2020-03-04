@@ -153,6 +153,24 @@
           <a href="#" class="nav-link head">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
+              Sales
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview" style="display: none;">
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/quote_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Quote</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link head">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
               Transaction
               <i class="right fas fa-angle-left"></i>
             </p>
