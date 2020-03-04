@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2020 at 01:06 PM
+-- Generation Time: Mar 04, 2020 at 12:48 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -77,7 +77,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`company_id`, `company_name`, `company_address`, `company_city`, `company_state`, `company_district`, `company_statecode`, `company_pincode`, `company_mob1`, `company_mob2`, `company_email`, `company_website`, `company_pan_no`, `company_gst_no`, `company_lic1`, `company_lic2`, `company_start_date`, `company_end_date`, `company_logo`, `company_seal`, `date`) VALUES
-(1, 'Output Books', 'fghfgh dfgh', 'Kolhapur', 'Maharashtra', 'Kolhaput', 0, '111222', '9876543210', '9998887770', 'demo@email.com', 'www.ppp.com', '111', '222', '333', '444', '01-01-2019', '01-01-2021', '', '', '2020-02-13 06:24:49');
+(1, 'Saloon', 'fghfgh dfgh', 'Kolhapur', 'Maharashtra', 'Kolhaput', 0, '111222', '9876543210', '9998887770', 'demo@email.com', 'www.ppp.com', '111', '222', '333', '444', '01-01-2019', '01-01-2021', '', '', '2020-02-18 10:28:47');
 
 -- --------------------------------------------------------
 
@@ -392,7 +392,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `company_id`, `customer_no`, `customer_company`, `customer_name`, `customer_display_name`, `customer_gstin`, `customer_pan`, `composition_scheme`, `customer_tds`, `customer_mobile`, `customer_phone`, `customer_email`, `tags_id`, `ratesheet_id`, `customer_addr1`, `customer_addr2`, `customer_city`, `customer_pin`, `country_id`, `state_id`, `is_addr_same`, `customer_s_addr1`, `customer_s_addr2`, `customer_s_city`, `customer_s_pin`, `country_s_id`, `state_s_id`, `customer_status`, `customer_addedby`, `customer_added_date`, `customer_updateby`, `customer_update_date`) VALUES
-(1, 1, NULL, 'q', 'w', 'e', 'r', 't', 1, 10, '9633699636', '9955663322', 'dsfg@dfgh.bbb', 1, 0, 'xcb', 'xcvb', 'vb', '666333', 101, 22, 0, 'xcb', 'fsdfdf', 'vb', '666333', 101, 22, 1, '1', '13-02-2020 07:02:19 ', '1', '13-02-2020 10:02:14 ');
+(1, 1, NULL, 'q', 'w', 'e', 'r', 't', 1, 10, '9633699636', '9955663322', 'dsfg@dfgh.bbb', 1, 0, 'xcb', 'xcvb', 'vb', '666333', 101, 22, 0, 'xcb', 'fsdfdf', 'vb', '666333', 101, 22, 1, '1', '13-02-2020 07:02:19 ', '1', '14-02-2020 09:47:13 ');
 
 -- --------------------------------------------------------
 
