@@ -3,7 +3,7 @@
   <a href="#" class="brand-link">
     <img src="dist/img/AdminLTELogo.png" alt="" class="brand-image img-circle elevation-3"
          style="opacity: .8">
-    <span class="brand-text font-weight-light">Poltry</span>
+    <span class="brand-text font-weight-light">Output_Book</span>
   </a>
 
   <!-- Sidebar -->
@@ -31,25 +31,23 @@
           </a>
         </li>
 
-      <li class="nav-item has-treeview">
-        <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-chart-pie"></i>
-          <p>
-            Master
-            <i class="right fas fa-angle-left"></i>
-          </p>
-        </a>
-        <ul class="nav nav-treeview" style="display: none;">
-          <li class="nav-item">
-            <a href="<?php echo base_url(); ?>Admin/company_information_list" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>
-                Company Information
-              </p>
-            </a>
-          </li>
-        </ul>
-      </li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link head">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Master
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview" style="display: none;">
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Admin/company_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Company Information</p>
+              </a>
+            </li>
+          </ul>
+        </li>
       <li class="nav-item">
         <a href="<?php echo base_url(); ?>Admin/logout" class="nav-link">
           <i class="nav-icon fas fa-th"></i>

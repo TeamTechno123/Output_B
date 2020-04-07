@@ -270,6 +270,61 @@
           </a>
           <ul class="nav nav-treeview" style="display: none;">
             <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/sale_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Sale Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/sale_order_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Sale Order Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/sale_return_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Sale Return Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/sale_return_challan_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Sale Return Challan </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/purchase_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Purchase Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/purchase_order_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Purchase Order Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/purchase_return_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Purchase Return Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/purchase_return_challan_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Purchase Return Challan </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/purchase_challan_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Purchase Challan Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="<?php echo base_url(); ?>Transaction/contra_entry_list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Contra Information</p>

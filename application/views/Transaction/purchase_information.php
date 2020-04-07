@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 text-center mt-2">
-            <h1>Delivery Challan Information</h1>
+            <h1>Purchase Information</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,14 +22,14 @@
             <!-- general form elements -->
             <div class="card card-default">
               <div class="card-header">
-                <h3 class="card-title">Add Delivery Challan </h3>
+                <h3 class="card-title">Add Purchase Information </h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form class="m-0 input_form" id="form_action" role="form" action="" method="post" autocomplete="off">
                 <div class="card-body row">
                   <div class="form-group col-md-2">
-                    <label>Date.*</label>
+                    <label>Date</label>
                     <input type="text" class="form-control form-control-sm" name="stock_date" id="date1" data-target="#date1" data-toggle="datetimepicker" value="<?php if(isset($stock_date)){ echo $stock_date; } else{ echo date('d-m-Y'); } ?>" placeholder="" required>
                   </div>
                   <div class="form-group col-md-3 select_sm">
@@ -56,9 +56,9 @@
               </div>
 
               <div class="form-group col-md-2 select_sm">
-              <label>Select Sale Type</label>
-              <select class="form-control select2" name="sale_type" id="sale_type" data-placeholder="Select Sale Type" required>
-                <!-- <option value="">Select Sale Type</option>
+              <label>Select Purchase Type</label>
+              <select class="form-control select2" name="sale_type" id="sale_type" data-placeholder="Select Purchase Type" required>
+                <!-- <option value="">Select Purchase Type</option>
                 <?php if(isset($state_list)){ foreach ($state_list as $list) { ?>
                 <option value="<?php echo $list->state_id; ?>" <?php if(isset($state_id) && $state_id == $list->state_id){ echo 'selected'; } ?>><?php echo $list->state_name; ?></option>
                 <?php } } ?> -->
@@ -66,13 +66,13 @@
             </div>
 
             <div class="form-group col-md-2">
-              <label>DC No.</label>
-              <input type="text" class="form-control form-control-sm" name="stock_date"  value="<?php if(isset($stock_date)){ echo $stock_date; } else{ echo date('d-m-Y'); } ?>" placeholder="DC No." required>
+              <label>Bill No.</label>
+              <input type="text" class="form-control form-control-sm" name="bill_no"  value="<?php if(isset($bill_no)){ echo $bill_no; } else{ echo date('d-m-Y'); } ?>" placeholder="Bill No." required>
             </div>
 
             <div class="form-group col-md-2">
-              <label>DC Date.</label>
-              <input type="text" class="form-control form-control-sm" name="stock_date" id="date1" data-target="#date1" data-toggle="datetimepicker" value="<?php if(isset($stock_date)){ echo $stock_date; } else{ echo date('d-m-Y'); } ?>" placeholder="DC Date." required>
+              <label>Due Date</label>
+              <input type="text" class="form-control form-control-sm" name="due_date" id="date1" data-target="#date1" data-toggle="datetimepicker" value="<?php if(isset($due_date)){ echo $due_date; } else{ echo date('d-m-Y'); } ?>" placeholder="Due Date" required>
             </div>
 
             <div class="form-group col-md-2 select_sm">
@@ -311,7 +311,6 @@
                   </div>
                 </div>
 
-                  </div>
                 <div class="card-footer row">
 
                   <div class="col-md-12 text-center">
@@ -320,7 +319,7 @@
                     <?php } else{ ?>
                       <button id="btn_save" type="submit" class="btn btn-success px-4">Save</button>
                     <?php } ?>
-                    <a href="<?php echo base_url() ?>Transaction/contra_entry_list" class="btn btn-default ml-4">Cancel</a>
+                    <a href="<?php echo base_url() ?>Transaction/purchase_information_list" class="btn btn-default ml-4">Cancel</a>
                   </div>
                 </div>
               </form>

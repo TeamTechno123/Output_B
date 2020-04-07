@@ -22,7 +22,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-10 offset-md-1">
+          <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-default">
               <div class="card-header">
@@ -43,26 +43,63 @@
                     <label>Company Name</label>
                     <input type="text" class="form-control form-control-sm" name="company_name" id="company_name" value="<?php if(isset($company_name)){ echo $company_name; } ?>" placeholder="Enter Company Name" required>
                   </div>
-                  <div class="form-group col-md-12">
-                    <label>Address</label>
-                    <textarea class="form-control form-control-sm" rows="3" name="company_address" id="company_address" placeholder="Enter Company Address" required><?php if(isset($company_address)){ echo $company_address; } ?></textarea>
+
+
+
+                      <div class="col-md-6">
+                        <div class="row">
+                        <div class="form-group col-md-6 select_sm">
+                          <label>Select Trade</label>
+                          <select class="form-control select2" name="state_id" id="state_id" data-placeholder="Select Trade" required>
+                            <option value="">Select Trade</option>
+                            <!-- <?php if(isset($state_list)){ foreach ($state_list as $list) { ?>
+                            <option value="<?php echo $list->state_id; ?>" <?php if(isset($state_id) && $state_id == $list->state_id){ echo 'selected'; } ?>><?php echo $list->state_name; ?></option>
+                            <?php } } ?> -->
+                          </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <label>Other</label>
+                          <input type="text" class="form-control form-control-sm" name="company_name" id="company_name" value="<?php if(isset($company_name)){ echo $company_name; } ?>" placeholder="Other" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                          <label>Address</label>
+                          <textarea class="form-control form-control-sm" rows="3" name="company_address" id="company_address" placeholder="Enter Company Address" required><?php if(isset($company_address)){ echo $company_address; } ?></textarea>
+                        </div>
+
+                        <div class="form-group col-md-6 select_sm">
+                    <label>Select Country</label>
+                    <select class="form-control select2" name="country_id" id="country_id" data-placeholder="Select Country" required>
+                      <option value="">Select Country</option>
+                      <?php if(isset($country_list)){ foreach ($country_list as $list) { ?>
+                      <option value="<?php echo $list->country_id; ?>" <?php if(isset($country_id) && $country_id == $list->country_id){ echo 'selected'; } ?>><?php echo $list->country_name; ?></option>
+                      <?php } } ?>
+                    </select>
                   </div>
+                  <div class="form-group col-md-6 select_sm">
+                    <label>Select State</label>
+                    <select class="form-control select2" name="state_id" id="state_id" data-placeholder="Select State" required>
+                      <option value="">Select State</option>
+                      <?php if(isset($state_list)){ foreach ($state_list as $list) { ?>
+                      <option value="<?php echo $list->state_id; ?>" <?php if(isset($state_id) && $state_id == $list->state_id){ echo 'selected'; } ?>><?php echo $list->state_name; ?></option>
+                      <?php } } ?>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6 select_sm">
+                    <label>Select City</label>
+                    <select class="form-control select2" name="city_id" id="city_id" data-placeholder="Select City" required>
+                      <option value="">Select City</option>
+                      <?php if(isset($state_list)){ foreach ($state_list as $list) { ?>
+                      <option value="<?php echo $list->city_id; ?>" <?php if(isset($city_id) && $city_id == $list->city_id){ echo 'selected'; } ?>><?php echo $list->state_name; ?></option>
+                      <?php } } ?>
+                    </select>
+                  </div>
+
                   <div class="form-group col-md-6">
-                    <label>City</label>
-                    <input type="text" class="form-control form-control-sm" name="company_city" id="company_city" value="<?php if(isset($company_city)){ echo $company_city; } ?>" placeholder="City">
+                    <label>Pincode</label>
+                    <input type="number" class="form-control form-control-sm" name="company_pincode" id="company_pincode" value="<?php if(isset($company_pincode)){ echo $company_pincode; } ?>" placeholder="Pincode">
                   </div>
-                  <div class="form-group col-md-6">
-                    <label>State</label>
-                    <input type="text" class="form-control form-control-sm" name="company_state" id="company_state" value="<?php if(isset($company_state)){ echo $company_state; } ?>" placeholder="State">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>District</label>
-                    <input type="text" class="form-control form-control-sm" name="company_district" id="company_district" value="<?php if(isset($company_district)){ echo $company_district; } ?>" placeholder="District">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Statecode</label>
-                    <input type="number" class="form-control form-control-sm" name="company_statecode" id="company_statecode" value="<?php if(isset($company_statecode)){ echo $company_statecode; } ?>" placeholder="Statecode">
-                  </div>
+
                   <div class="form-group col-md-6">
                     <label>Mobile No. 1</label>
                     <input type="number" class="form-control form-control-sm" name="company_mob1" id="company_mob1" value="<?php if(isset($company_mob1)){ echo $company_mob1; } ?>" placeholder="Mobile No. 1" required>
@@ -87,47 +124,132 @@
                     <label>GST No.</label>
                     <input type="text" class="form-control form-control-sm" name="company_gst_no" id="company_gst_no" value="<?php if(isset($company_gst_no)){ echo $company_gst_no; } ?>" placeholder="GST No.">
                   </div>
+
                   <div class="form-group col-md-6">
-                    <label>Lic No. 1</label>
-                    <input type="text" class="form-control form-control-sm" name="company_lic1" id="company_lic1" value="<?php if(isset($company_lic1)){ echo $company_lic1; } ?>" placeholder="Lic No. 1">
+                    <label>Enter IEC Code No.</label>
+                    <input type="text" class="form-control form-control-sm" name="company_iec_no" id="company_iec_no" value="<?php if(isset($company_iec_no)){ echo $company_iec_no; } ?>" placeholder="Enter IEC Code No.">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label>VAT No.</label>
+                    <input type="text" class="form-control form-control-sm" name="company_gst_no" id="company_gst_no" value="<?php if(isset($company_gst_no)){ echo $company_gst_no; } ?>" placeholder="VAT No.">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label>DL No. 1</label>
+                    <input type="number" class="form-control form-control-sm" name="company_mob1" id="company_mob1" value="<?php if(isset($company_mob1)){ echo $company_mob1; } ?>" placeholder="DL No. 1" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>Lic No. 2</label>
-                    <input type="text" class="form-control form-control-sm" name="company_lic2" id="company_lic2" value="<?php if(isset($company_lic2)){ echo $company_lic2; } ?>" placeholder="Lic No. 2">
+                    <label>DL No. 2 </label>
+                    <input type="number" class="form-control form-control-sm" name="company_mob2" id="company_mob2" value="<?php if(isset($company_mob2)){ echo $company_mob2; } ?>" placeholder="DL No. 2">
+                  </div>
+
+                  <div class="form-group col-md-6 select_sm">
+                    <label>Select Date Format</label>
+                    <select class="form-control select2" name="Date_id" id="Date_id" data-placeholder="Select Date Format" required>
+                      <option value="">Select Date Format</option>
+                      <?php if(isset($country_list)){ foreach ($country_list as $list) { ?>
+                      <option value="<?php echo $list->country_id; ?>" <?php if(isset($country_id) && $country_id == $list->country_id){ echo 'selected'; } ?>><?php echo $list->country_name; ?></option>
+                      <?php } } ?>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-6 select_sm">
+                    <label>Select primary Current</label>
+                    <select class="form-control select2" name="country_id" id="country_id" data-placeholder="Select primary Current" required>
+                      <option value="">Select primary Current</option>
+                      <?php if(isset($country_list)){ foreach ($country_list as $list) { ?>
+                      <option value="<?php echo $list->country_id; ?>" <?php if(isset($country_id) && $country_id == $list->country_id){ echo 'selected'; } ?>><?php echo $list->country_name; ?></option>
+                      <?php } } ?>
+                    </select>
+                  </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="row">
+
+                  <div class="form-group col-md-12">
+                    <label>Financial Year Start Date</label>
+                    <input type="text" class="form-control form-control-sm" name="company_pan_no" id="company_pan_no" value="<?php if(isset($company_pan_no)){ echo $company_pan_no; } ?>" placeholder="Financial Year Start Date">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label>Financial Year End Date</label>
+                    <input type="text" class="form-control form-control-sm" name="company_pan_no" id="company_pan_no" value="<?php if(isset($company_pan_no)){ echo $company_pan_no; } ?>" placeholder="Financial Year End Date">
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label>Email Id</label>
+                    <input type="email" class="form-control form-control-sm" name="admin_email" id="admin_email" placeholder="Admin Email" required>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label>Password</label>
+                    <input type="password" class="form-control form-control-sm" name="admin_password" id="admin_password" placeholder="Admin Password" required>
+                  </div>
+                  <div class="form-group col-md-12">
+                    <label>Company Logo</label>
+                    <input type="file" name="company_logo" value="">
+                    </div>
+
+                    <div class="form-group col-md-12">
+                      <label>Email Configuration Setting</label>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label>Enter Host</label>
+                      <input type="text" class="form-control form-control-sm" name="company_pan_no" id="company_pan_no" value="<?php if(isset($company_pan_no)){ echo $company_pan_no; } ?>" placeholder="Enter Host">
+                    </div>
+
+                    <div class="form-group col-md-4 select_sm">
+                    <label>Connection</label>
+                    <select class="form-control select2" name="state_id" id="state_id" data-placeholder="Connection" required>
+                      <option value="">Connection</option>
+                      <?php if(isset($state_list)){ foreach ($state_list as $list) { ?>
+                      <option value="<?php echo $list->state_id; ?>" <?php if(isset($state_id) && $state_id == $list->state_id){ echo 'selected'; } ?>><?php echo $list->state_name; ?></option>
+                      <?php } } ?>
+                    </select>
+                  </div>
+
+                    <div class="form-group col-md-2">
+                      <label>Port</label>
+                      <input type="text" class="form-control form-control-sm" name="company_pan_no" id="company_pan_no" value="<?php if(isset($company_pan_no)){ echo $company_pan_no; } ?>" placeholder="Port">
+                    </div>
+
+
+                  <div class="form-group col-md-6">
+                    <label>Email Id</label>
+                    <input type="email" class="form-control form-control-sm" name="admin_email" id="admin_email" placeholder="Admin Email" required>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>Start Date</label>
-                    <input type="text" class="form-control form-control-sm date" name="company_start_date" id="date1" value="<?php if(isset($company_start_date)){ echo $company_start_date; } ?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Fin Start Date">
+                    <label>Password</label>
+                    <input type="password" class="form-control form-control-sm" name="admin_password" id="admin_password" placeholder="Admin Password" required>
                   </div>
+
                   <div class="form-group col-md-6">
-                    <label>End Date</label>
-                    <input type="text" class="form-control form-control-sm" name="company_end_date" id="date2" value="<?php if(isset($company_end_date)){ echo $company_end_date; } ?>" data-target="#date2" data-toggle="datetimepicker" placeholder="Fin End Date">
+                    <label>From Name</label>
+                    <input type="text" class="form-control form-control-sm" name="company_pan_no" id="company_pan_no" value="<?php if(isset($company_pan_no)){ echo $company_pan_no; } ?>" placeholder="From Name">
                   </div>
-                  <?php if(isset($update)){ }else{ ?>
-                    <div class="form-group col-md-6">
-                      <label>Company Logo</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="company_logo" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Browse Logo</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                      No file selected.
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Email Id</label>
-                      <input type="email" class="form-control form-control-sm" name="admin_email" id="admin_email" placeholder="Admin Email" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Password</label>
-                      <input type="password" class="form-control form-control-sm" name="admin_password" id="admin_password" placeholder="Admin Password" required>
-                    </div>
-                  <?php } ?>
+
+
+                <div class="form-group col-md-6">
+                  <label>From Email</label>
+                  <input type="email" class="form-control form-control-sm" name="admin_email" id="admin_email" placeholder="From Email" required>
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label>SMS Configuration Setting</label>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label>Enter API</label>
+                    <textarea class="form-control form-control-sm" rows="4" name="company_address" id="company_address" placeholder="Enter API" required><?php if(isset($company_address)){ echo $company_address; } ?></textarea>
+                  </div>
+                </div>
+              </div>
+
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
+                <div class="card-footer text-center">
                   <?php if(isset($update)){ ?>
                     <button type="submit" class="btn btn-primary">Update Company</button>
                   <?php }else{ ?>

@@ -28,7 +28,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-10 offset-md-1">
+          <div class="col-md-12 ">
             <!-- general form elements -->
             <div class="card card-default">
               <div class="card-header">
