@@ -80,9 +80,51 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/activation_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Activation</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/market_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Market</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/account_group_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Account Group</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/other_charges_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Other Charges</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/voucher_numbering_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Voucher Numbering</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/warehouse_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Warehouse Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="<?php echo base_url(); ?>User/item_group_list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Item Group</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/item_company_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Item Company</p>
               </a>
             </li>
             <li class="nav-item">
@@ -95,6 +137,57 @@
               <a href="<?php echo base_url(); ?>User/item_category_list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Item Category</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/reset_fin_year_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Reset Financial Year</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/role_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Role Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/service_head_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Service Head Information</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/stform_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>S T Form Information</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/std_narr_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Standard Narration</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/salt_information_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Salt Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/tax_slab_vat_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tax Slab  Information Vat </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>User/tax_slab_gst_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tax Slab  Information GST </p>
               </a>
             </li>
             <li class="nav-item">
@@ -177,11 +270,39 @@
           </a>
           <ul class="nav nav-treeview" style="display: none;">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="<?php echo base_url(); ?>Transaction/contra_entry_list" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Demo Link
-                </p>
+                <p>Contra Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/delivery_challan_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Delivery Challan Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/journal_entry_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Journal Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/bank_entry_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Bank Entry Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/quick_receipt_entry_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Quick Receipt Information</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Transaction/payment_entry_list" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Payment Information</p>
               </a>
             </li>
           </ul>

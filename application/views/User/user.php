@@ -29,24 +29,79 @@
               <!-- form start -->
               <form id="form_action" role="form" action="" method="post">
                 <div class="card-body row">
+                  <div class="form-group col-md-12 select_sm">
+                    <label>Select Role Name</label>
+                    <select class="form-control select2" name="role_id" id="role_id" data-placeholder="Select Role Name" required>
+                      <option value="">Select Role Name</option>
+                      <!-- <?php if(isset($role_list)){ foreach ($role_list as $list) { ?>
+                      <option value="<?php echo $list->role_id; ?>" <?php if(isset($role_id) && $role_id == $list->role_id){ echo 'selected'; } ?>><?php echo $list->role_name; ?></option>
+                      <?php } } ?> -->
+                    </select>
+                  </div>
                   <div class="form-group col-md-12">
+                    <label>Enter Name of User</label>
                     <input type="text" class="form-control required title-case text" name="user_name" id="user_name" value="<?php if(isset($user_name)){ echo $user_name; } ?>" placeholder="Enter Name of User" required>
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="user_city" id="user_city" value="<?php if(isset($user_city)){ echo $user_city; } ?>" placeholder="Enter City" required>
+                    <label>Enter Address</label>
+                    <textarea class="form-control form-control-sm" rows="3" name="user_address" id="user_address" placeholder="Enter Address" required><?php if(isset($user_address)){ echo $user_address; } ?></textarea>
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6 select_sm">
+                    <label>Select Country</label>
+                    <select class="form-control select2" name="country_id" id="country_id" data-placeholder="Select Country" required>
+                      <option value="">Select Country</option>
+                      <!-- <?php if(isset($country_list)){ foreach ($country_list as $list) { ?>
+                      <option value="<?php echo $list->country_id; ?>" <?php if(isset($country_id) && $country_id == $list->country_id){ echo 'selected'; } ?>><?php echo $list->country_name; ?></option>
+                      <?php } } ?> -->
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6 select_sm">
+                    <label>Select State</label>
+                    <select class="form-control select2" name="state_id" id="state_id" data-placeholder="Select State" required>
+                      <option value="">Select State</option>
+                      <!-- <?php if(isset($state_list)){ foreach ($state_list as $list) { ?>
+                      <option value="<?php echo $list->state_id; ?>" <?php if(isset($state_id) && $state_id == $list->state_id){ echo 'selected'; } ?>><?php echo $list->state_name; ?></option>
+                      <?php } } ?> -->
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6 select_sm">
+                    <label>Select city</label>
+                    <select class="form-control select2" name="city_id" id="city_id" data-placeholder="Select city" required>
+                      <option value="">Select city</option>
+                      <!-- <?php if(isset($city_list)){ foreach ($city_list as $list) { ?>
+                      <option value="<?php echo $list->city_id; ?>" <?php if(isset($city_id) && $city_id == $list->city_id){ echo 'selected'; } ?>><?php echo $list->city_name; ?></option>
+                      <?php } } ?> -->
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Enter Pincode</label>
+                    <input type="text" class="form-control" name="pincode" id="pincode" value="<?php if(isset($pincode)){ echo $pincode; } ?>" placeholder="Enter Pincode" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Mobile No.</label>
                     <input type="number" class="form-control" name="user_mobile" id="user_mobile" value="<?php if(isset($user_mobile)){ echo $user_mobile; } ?>" placeholder="Enter Mobile No." required>
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
+                  <label>Enter Email Id</label>
                     <input type="email" class="form-control" name="user_email" id="user_email" value="<?php if(isset($user_email)){ echo $user_email; } ?>" placeholder="Enter Email Id." required>
                   </div>
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
+                  <label>Enter Password</label>
                     <input type="password" class="form-control " name="user_password" id="user_password" value="<?php if(isset($user_password)){ echo $user_password; } ?>" placeholder="Enter Password" required>
                   </div>
+                  <div class="form-group col-md-6">
+                  <label>Confirm Password</label>
+                    <input type="password" class="form-control " name="c_password" id="c_password" value="<?php if(isset($c_password)){ echo $c_password; } ?>" placeholder="Confirm Password" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="user_status" id="user_status" value="1">
+                        <label for="composition_scheme" class="custom-control-label">Disable This User</label>
+                      </div>
+                    </div>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
+                <div class="card-footer text-center">
                   <?php if(isset($update)){ ?>
                     <button id="btn_update" type="submit" class="btn btn-primary">Update </button>
                   <?php } else{ ?>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<style>
-  td{ padding:2px 10px !important; }
-</style>
+<!-- <style>
+  td{ padding:7px 10px !important; }
+</style> -->
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
@@ -12,10 +12,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6 mt-1">
-            <h4>Quotes</h4>
+            <h4>Tax Slab Information List</h4>
           </div>
           <div class="col-sm-6 mt-1 text-right">
-            <a href="quote" class="btn btn-sm btn-primary">Add Quote</a>
+              <a href="<?php echo base_url(); ?>User/tax_slab_vat" class="btn btn-sm btn-primary">Add Tax Slab</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -26,41 +26,36 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-            <div class="card-body p-0">
-              <table id="example1" class="table table-bordered tbl_list">
+            <!-- general form elements -->
+            <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th class="wt_50">#</th>
-                  <th>Date</th>
-                  <th>Quote No</th>
-                  <th>Contact</th>
-                  <th>Ref.No</th>
-                  <th class="wt_50">Status</th>
-                  <th class="wt_50">Amount</th>
-                  <th>Action</th>
+                  <th>Tax Slab Name</th>
+                  <th>Type</th>
+                  <th>Tax %</th>
+                  <th class="wt_100">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <!-- <?php $i = 0;
-                  foreach ($supplier_list as $list) {
+                  foreach ($salt_list as $list) {
                     $i++; ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $list->supplier_name; ?></td>
-                    <td><?php echo $list->supplier_company; ?></td>
-                    <td><?php echo $list->supplier_email; ?></td>
-                    <td><?php echo $list->supplier_mobile; ?></td>
-                    <td><?php echo $list->supplier_mobile; ?></td>
-                    <td><?php echo $list->supplier_update_date; ?></td>
+                    <td><?php echo $list->salt_name; ?></td>
                     <td>
-                      <a href="<?php echo base_url(); ?>User/edit_supplier/<?php echo $list->supplier_id; ?>"> <i class="fa fa-edit"></i> </a>
-                      <a href="<?php echo base_url(); ?>User/delete_supplier/<?php echo $list->supplier_id; ?>" onclick="return confirm('Delete this Customer');" class="ml-2 text-danger"> <i class="fa fa-trash"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/edit_salt/<?php echo $list->salt_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a href="<?php echo base_url(); ?>User/delete_salt/<?php echo $list->salt_id; ?>" onclick="return confirm('Delete Information');" class="ml-4"> <i class="fa fa-trash text-danger"></i> </a>
                     </td>
-                  </tr>
-                  <?php } ?> -->
+                  <?php } ?>
+                  </tr> -->
                 </tbody>
               </table>
-            <!-- </div> -->
+            </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->

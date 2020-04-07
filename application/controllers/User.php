@@ -1114,10 +1114,390 @@ class User extends CI_Controller{
   }
 
 
+  /*******************************  Reset Financial Year  ****************************/
+
+    // Stock List...
+    public function reset_fin_year_list(){
+      $out_user_id = $this->session->userdata('out_user_id');
+      $out_company_id = $this->session->userdata('out_company_id');
+      $out_roll_id = $this->session->userdata('out_roll_id');
+      if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+      $data['reset_fin_year_list'] = $this->User_Model->user_list($out_company_id);
+      $this->load->view('Include/head',$data);
+      $this->load->view('Include/navbar',$data);
+      $this->load->view('User/reset_fin_year_list',$data);
+      $this->load->view('Include/footer',$data);
+    }
+
+    //Add Stock
+    public function reset_fin_year(){
+      $out_user_id = $this->session->userdata('out_user_id');
+      $out_company_id = $this->session->userdata('out_company_id');
+      $out_roll_id = $this->session->userdata('out_roll_id');
+      if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+      $this->load->view('Include/head');
+      $this->load->view('Include/navbar');
+      $this->load->view('User/reset_fin_year');
+      $this->load->view('Include/footer');
+    }
+
+    /*******************************  role Information  ****************************/
+
+      // Stock List...
+      public function role_information_list(){
+        $out_user_id = $this->session->userdata('out_user_id');
+        $out_company_id = $this->session->userdata('out_company_id');
+        $out_roll_id = $this->session->userdata('out_roll_id');
+        if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+        $data['role_information_list'] = $this->User_Model->user_list($out_company_id);
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
+        $this->load->view('User/role_information_list',$data);
+        $this->load->view('Include/footer',$data);
+      }
+
+      //Add Stock
+      public function role_information(){
+        $out_user_id = $this->session->userdata('out_user_id');
+        $out_company_id = $this->session->userdata('out_company_id');
+        $out_roll_id = $this->session->userdata('out_roll_id');
+        if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+        $this->load->view('Include/head');
+        $this->load->view('Include/navbar');
+        $this->load->view('User/role_information');
+        $this->load->view('Include/footer');
+      }
+
+      /*******************************  salt Information  ****************************/
+        public function salt_information_list(){
+          $out_user_id = $this->session->userdata('out_user_id');
+          $out_company_id = $this->session->userdata('out_company_id');
+          $out_roll_id = $this->session->userdata('out_roll_id');
+          if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+          $data['salt_information_list'] = $this->User_Model->user_list($out_company_id);
+          $this->load->view('Include/head',$data);
+          $this->load->view('Include/navbar',$data);
+          $this->load->view('User/salt_information_list',$data);
+          $this->load->view('Include/footer',$data);
+        }
 
 
+        public function salt_information(){
+          $out_user_id = $this->session->userdata('out_user_id');
+          $out_company_id = $this->session->userdata('out_company_id');
+          $out_roll_id = $this->session->userdata('out_roll_id');
+          if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+          $this->load->view('Include/head');
+          $this->load->view('Include/navbar');
+          $this->load->view('User/salt_information');
+          $this->load->view('Include/footer');
+        }
 
 
+        /*******************************  service_head Information  ****************************/
+          public function service_head_information_list(){
+            $out_user_id = $this->session->userdata('out_user_id');
+            $out_company_id = $this->session->userdata('out_company_id');
+            $out_roll_id = $this->session->userdata('out_roll_id');
+            if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+            $data['service_head_information_list'] = $this->User_Model->user_list($out_company_id);
+            $this->load->view('Include/head',$data);
+            $this->load->view('Include/navbar',$data);
+            $this->load->view('User/service_head_information_list',$data);
+            $this->load->view('Include/footer',$data);
+          }
+
+
+          public function service_head_information(){
+            $out_user_id = $this->session->userdata('out_user_id');
+            $out_company_id = $this->session->userdata('out_company_id');
+            $out_roll_id = $this->session->userdata('out_roll_id');
+            if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+            $this->load->view('Include/head');
+            $this->load->view('Include/navbar');
+            $this->load->view('User/service_head_information');
+            $this->load->view('Include/footer');
+          }
+
+          /*******************************  service_head Information  ****************************/
+            public function stform_information_list(){
+              $out_user_id = $this->session->userdata('out_user_id');
+              $out_company_id = $this->session->userdata('out_company_id');
+              $out_roll_id = $this->session->userdata('out_roll_id');
+              if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+              $data['stform_information_list'] = $this->User_Model->user_list($out_company_id);
+              $this->load->view('Include/head',$data);
+              $this->load->view('Include/navbar',$data);
+              $this->load->view('User/stform_information_list',$data);
+              $this->load->view('Include/footer',$data);
+            }
+
+
+            public function stform_information(){
+              $out_user_id = $this->session->userdata('out_user_id');
+              $out_company_id = $this->session->userdata('out_company_id');
+              $out_roll_id = $this->session->userdata('out_roll_id');
+              if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+              $this->load->view('Include/head');
+              $this->load->view('Include/navbar');
+              $this->load->view('User/stform_information');
+              $this->load->view('Include/footer');
+            }
+
+            /*******************************  std Narration Information  ****************************/
+              public function std_narr_information_list(){
+                $out_user_id = $this->session->userdata('out_user_id');
+                $out_company_id = $this->session->userdata('out_company_id');
+                $out_roll_id = $this->session->userdata('out_roll_id');
+                if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                $data['std_narr_information_list'] = $this->User_Model->user_list($out_company_id);
+                $this->load->view('Include/head',$data);
+                $this->load->view('Include/navbar',$data);
+                $this->load->view('User/std_narr_information_list',$data);
+                $this->load->view('Include/footer',$data);
+              }
+
+
+              public function std_narr_information(){
+                $out_user_id = $this->session->userdata('out_user_id');
+                $out_company_id = $this->session->userdata('out_company_id');
+                $out_roll_id = $this->session->userdata('out_roll_id');
+                if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                $this->load->view('Include/head');
+                $this->load->view('Include/navbar');
+                $this->load->view('User/std_narr_information');
+                $this->load->view('Include/footer');
+              }
+
+
+              /******************************* Tax Slab Vat Information  ****************************/
+                public function tax_slab_vat_list(){
+                  $out_user_id = $this->session->userdata('out_user_id');
+                  $out_company_id = $this->session->userdata('out_company_id');
+                  $out_roll_id = $this->session->userdata('out_roll_id');
+                  if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                  $data['tax_slab_vat_list'] = $this->User_Model->user_list($out_company_id);
+                  $this->load->view('Include/head',$data);
+                  $this->load->view('Include/navbar',$data);
+                  $this->load->view('User/tax_slab_vat_list',$data);
+                  $this->load->view('Include/footer',$data);
+                }
+
+
+                public function tax_slab_vat(){
+                  $out_user_id = $this->session->userdata('out_user_id');
+                  $out_company_id = $this->session->userdata('out_company_id');
+                  $out_roll_id = $this->session->userdata('out_roll_id');
+                  if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                  $this->load->view('Include/head');
+                  $this->load->view('Include/navbar');
+                  $this->load->view('User/tax_slab_vat');
+                  $this->load->view('Include/footer');
+                }
+
+
+                /*******************************  Tax Slab GST Information  ****************************/
+                  public function tax_slab_gst_list(){
+                    $out_user_id = $this->session->userdata('out_user_id');
+                    $out_company_id = $this->session->userdata('out_company_id');
+                    $out_roll_id = $this->session->userdata('out_roll_id');
+                    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                    $data['tax_slab_gst_list'] = $this->User_Model->user_list($out_company_id);
+                    $this->load->view('Include/head',$data);
+                    $this->load->view('Include/navbar',$data);
+                    $this->load->view('User/tax_slab_gst_list',$data);
+                    $this->load->view('Include/footer',$data);
+                  }
+
+
+                  public function tax_slab_gst(){
+                    $out_user_id = $this->session->userdata('out_user_id');
+                    $out_company_id = $this->session->userdata('out_company_id');
+                    $out_roll_id = $this->session->userdata('out_roll_id');
+                    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                    $this->load->view('Include/head');
+                    $this->load->view('Include/navbar');
+                    $this->load->view('User/tax_slab_gst');
+                    $this->load->view('Include/footer');
+                  }
+
+
+                  /****************************** Item Company Information  ****************************/
+                    public function item_company_list(){
+                      $out_user_id = $this->session->userdata('out_user_id');
+                      $out_company_id = $this->session->userdata('out_company_id');
+                      $out_roll_id = $this->session->userdata('out_roll_id');
+                      if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                      $data['item_company_list'] = $this->User_Model->user_list($out_company_id);
+                      $this->load->view('Include/head',$data);
+                      $this->load->view('Include/navbar',$data);
+                      $this->load->view('User/item_company_list',$data);
+                      $this->load->view('Include/footer',$data);
+                    }
+
+
+                    public function item_company(){
+                      $out_user_id = $this->session->userdata('out_user_id');
+                      $out_company_id = $this->session->userdata('out_company_id');
+                      $out_roll_id = $this->session->userdata('out_roll_id');
+                      if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                      $this->load->view('Include/head');
+                      $this->load->view('Include/navbar');
+                      $this->load->view('User/item_company');
+                      $this->load->view('Include/footer');
+                    }
+
+
+                    /****************************** Item Company Information  ****************************/
+                      public function activation_list(){
+                        $out_user_id = $this->session->userdata('out_user_id');
+                        $out_company_id = $this->session->userdata('out_company_id');
+                        $out_roll_id = $this->session->userdata('out_roll_id');
+                        if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                        $data['activation_list'] = $this->User_Model->user_list($out_company_id);
+                        $this->load->view('Include/head',$data);
+                        $this->load->view('Include/navbar',$data);
+                        $this->load->view('User/activation_list',$data);
+                        $this->load->view('Include/footer',$data);
+                      }
+
+
+                      public function activation(){
+                        $out_user_id = $this->session->userdata('out_user_id');
+                        $out_company_id = $this->session->userdata('out_company_id');
+                        $out_roll_id = $this->session->userdata('out_roll_id');
+                        if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                        $this->load->view('Include/head');
+                        $this->load->view('Include/navbar');
+                        $this->load->view('User/activation');
+                        $this->load->view('Include/footer');
+                      }
+
+          /****************************** Item Company Information  ****************************/
+            public function market_list(){
+              $out_user_id = $this->session->userdata('out_user_id');
+              $out_company_id = $this->session->userdata('out_company_id');
+              $out_roll_id = $this->session->userdata('out_roll_id');
+              if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+              $data['market_list'] = $this->User_Model->user_list($out_company_id);
+              $this->load->view('Include/head',$data);
+              $this->load->view('Include/navbar',$data);
+              $this->load->view('User/market_list',$data);
+              $this->load->view('Include/footer',$data);
+            }
+
+
+            public function market(){
+              $out_user_id = $this->session->userdata('out_user_id');
+              $out_company_id = $this->session->userdata('out_company_id');
+              $out_roll_id = $this->session->userdata('out_roll_id');
+              if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+              $this->load->view('Include/head');
+              $this->load->view('Include/navbar');
+              $this->load->view('User/market');
+              $this->load->view('Include/footer');
+            }
+
+            /****************************** Item Company Information  ****************************/
+              public function account_group_list(){
+                $out_user_id = $this->session->userdata('out_user_id');
+                $out_company_id = $this->session->userdata('out_company_id');
+                $out_roll_id = $this->session->userdata('out_roll_id');
+                if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                $data['account_group_list'] = $this->User_Model->user_list($out_company_id);
+                $this->load->view('Include/head',$data);
+                $this->load->view('Include/navbar',$data);
+                $this->load->view('User/account_group_list',$data);
+                $this->load->view('Include/footer',$data);
+              }
+
+
+              public function account_group(){
+                $out_user_id = $this->session->userdata('out_user_id');
+                $out_company_id = $this->session->userdata('out_company_id');
+                $out_roll_id = $this->session->userdata('out_roll_id');
+                if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                $this->load->view('Include/head');
+                $this->load->view('Include/navbar');
+                $this->load->view('User/account_group');
+                $this->load->view('Include/footer');
+              }
+
+
+              /****************************** Item Company Information  ****************************/
+                public function other_charges_list(){
+                  $out_user_id = $this->session->userdata('out_user_id');
+                  $out_company_id = $this->session->userdata('out_company_id');
+                  $out_roll_id = $this->session->userdata('out_roll_id');
+                  if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                  $data['other_charges_list'] = $this->User_Model->user_list($out_company_id);
+                  $this->load->view('Include/head',$data);
+                  $this->load->view('Include/navbar',$data);
+                  $this->load->view('User/other_charges_list',$data);
+                  $this->load->view('Include/footer',$data);
+                }
+
+
+                public function other_charges(){
+                  $out_user_id = $this->session->userdata('out_user_id');
+                  $out_company_id = $this->session->userdata('out_company_id');
+                  $out_roll_id = $this->session->userdata('out_roll_id');
+                  if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                  $this->load->view('Include/head');
+                  $this->load->view('Include/navbar');
+                  $this->load->view('User/other_charges');
+                  $this->load->view('Include/footer');
+                }
+
+                /****************************** Warehouse Information  ****************************/
+                  public function warehouse_information_list(){
+                    $out_user_id = $this->session->userdata('out_user_id');
+                    $out_company_id = $this->session->userdata('out_company_id');
+                    $out_roll_id = $this->session->userdata('out_roll_id');
+                    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                    $data['warehouse_information_list'] = $this->User_Model->user_list($out_company_id);
+                    $this->load->view('Include/head',$data);
+                    $this->load->view('Include/navbar',$data);
+                    $this->load->view('User/warehouse_information_list',$data);
+                    $this->load->view('Include/footer',$data);
+                  }
+
+
+                  public function warehouse_information(){
+                    $out_user_id = $this->session->userdata('out_user_id');
+                    $out_company_id = $this->session->userdata('out_company_id');
+                    $out_roll_id = $this->session->userdata('out_roll_id');
+                    if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                    $this->load->view('Include/head');
+                    $this->load->view('Include/navbar');
+                    $this->load->view('User/warehouse_information');
+                    $this->load->view('Include/footer');
+                  }
+
+                  /****************************** Voucher Numbering Information  ****************************/
+                    public function voucher_numbering_list(){
+                      $out_user_id = $this->session->userdata('out_user_id');
+                      $out_company_id = $this->session->userdata('out_company_id');
+                      $out_roll_id = $this->session->userdata('out_roll_id');
+                      if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                      $data['voucher_numbering_list'] = $this->User_Model->user_list($out_company_id);
+                      $this->load->view('Include/head',$data);
+                      $this->load->view('Include/navbar',$data);
+                      $this->load->view('User/voucher_numbering_list',$data);
+                      $this->load->view('Include/footer',$data);
+                    }
+
+
+                    public function voucher_numbering(){
+                      $out_user_id = $this->session->userdata('out_user_id');
+                      $out_company_id = $this->session->userdata('out_company_id');
+                      $out_roll_id = $this->session->userdata('out_roll_id');
+                      if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                      $this->load->view('Include/head');
+                      $this->load->view('Include/navbar');
+                      $this->load->view('User/voucher_numbering');
+                      $this->load->view('Include/footer');
+                    }
 
 
 

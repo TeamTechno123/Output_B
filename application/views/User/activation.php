@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 text-center mt-2">
-            <h1>Item  Group</h1>
+            <h1>Activation</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,40 +22,26 @@
             <!-- general form elements -->
             <div class="card card-default">
               <div class="card-header">
-                <h3 class="card-title">Add Item  Group</h3>
+                <h3 class="card-title">Add Activation Key</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form class="m-0 input_form" id="form_action" role="form" action="" method="post">
                 <div class="card-body row">
                   <div class="form-group col-md-12">
-                    <label>Item Group Name</label>
-                    <input type="text" class="form-control form-control-sm" name="item_group_name" id="item_group_name" value="<?php if(isset($item_group_name)){ echo $item_group_name; } ?>" placeholder="" required>
+                    <label>Enter License Key</label>
+                    <textarea class="form-control form-control-sm" rows="3" name="activatation_key" id="activatation_key" placeholder="Enter License Key" required><?php if(isset($activatation_key)){ echo $activatation_key; } ?></textarea>
                   </div>
-
-                  <div class="form-group col-md-6">
-                      <label>Image</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="item_group_image" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Browse Logo</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6 mt-4">
-                      No file selected.
-                    </div>
                 </div>
                 <div class="card-footer row">
-                  <div class="col-md-6">
-                  </div>
-                  <div class="col-md-6 text-right">
+
+                  <div class="col-md-12 text-center">
                     <?php if(isset($update)){ ?>
                       <button id="btn_update" type="submit" class="btn btn-primary">Update </button>
                     <?php } else{ ?>
-                      <button id="btn_save" type="submit" class="btn btn-success px-4">Save</button>
+                      <button id="btn_save" type="submit" class="btn btn-success px-4">Activate</button>
                     <?php } ?>
-                    <a href="<?php echo base_url() ?>User/supplier_list" class="btn btn-default ml-4">Cancel</a>
+                    <a href="<?php echo base_url() ?>User/activation_list" class="btn btn-default ml-4">Cancel</a>
                   </div>
                 </div>
               </form>
@@ -71,20 +57,20 @@
 
 <script type="text/javascript">
 // Check Mobile Duplication..
-  var item_group_name1 = $('#item_group_name').val();
-  $('#item_group_name').on('change',function(){
-    var item_group_name = $(this).val();
+  var item_company_name1 = $('#item_company_name').val();
+  $('#item_company_name').on('change',function(){
+    var item_company_name = $(this).val();
     $.ajax({
       url:'<?php echo base_url(); ?>User/check_duplication',
       type: 'POST',
-      data: {"column_name":"item_group_name",
-             "column_val":item_group_name,
-             "table_name":"item_group"},
+      data: {"column_name":"item_company_name",
+             "column_val":item_company_name,
+             "table_name":"item_company"},
       context: this,
       success: function(result){
         if(result > 0){
-          $('#item_group_name').val(item_group_name1);
-          toastr.error(item_group_name+' Exist.');
+          $('#item_company_name').val(item_company_name1);
+          toastr.error(item_company_name+' Exist.');
         }
       }
     });

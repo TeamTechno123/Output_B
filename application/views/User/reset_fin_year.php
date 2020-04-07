@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 text-center mt-2">
-            <h1>Item  Group</h1>
+            <h1>Reset Financial Year</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -22,29 +22,23 @@
             <!-- general form elements -->
             <div class="card card-default">
               <div class="card-header">
-                <h3 class="card-title">Add Item  Group</h3>
+                <h3 class="card-title"> Reset Financial Year</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form class="m-0 input_form" id="form_action" role="form" action="" method="post">
                 <div class="card-body row">
                   <div class="form-group col-md-12">
-                    <label>Item Group Name</label>
-                    <input type="text" class="form-control form-control-sm" name="item_group_name" id="item_group_name" value="<?php if(isset($item_group_name)){ echo $item_group_name; } ?>" placeholder="" required>
+                    <label>Start Date</label>
+                    <input type="text" class="form-control form-control-sm" name="fin_sdate" id="fin_sdate" value="<?php if(isset($fin_sdate)){ echo $fin_sdate; } ?>" placeholder="Start Date" required>
                   </div>
 
-                  <div class="form-group col-md-6">
-                      <label>Image</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" name="item_group_image" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Browse Logo</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-6 mt-4">
-                      No file selected.
-                    </div>
+                  <div class="form-group col-md-12">
+                    <label>End Date</label>
+                    <input type="text" class="form-control form-control-sm" name="fin_edate" id="fin_edate" value="<?php if(isset($fin_edate)){ echo $fin_edate; } ?>" placeholder="End date" required>
+                  </div>
+
+
                 </div>
                 <div class="card-footer row">
                   <div class="col-md-6">
@@ -55,7 +49,7 @@
                     <?php } else{ ?>
                       <button id="btn_save" type="submit" class="btn btn-success px-4">Save</button>
                     <?php } ?>
-                    <a href="<?php echo base_url() ?>User/supplier_list" class="btn btn-default ml-4">Cancel</a>
+                    <a href="<?php echo base_url() ?>User/reset_fin_year_list" class="btn btn-default ml-4">Cancel</a>
                   </div>
                 </div>
               </form>

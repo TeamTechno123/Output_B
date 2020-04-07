@@ -28,6 +28,24 @@
               <!-- form start -->
               <form class="m-0 input_form" id="form_action" role="form" action="" method="post">
                 <div class="card-body row">
+                  <div class="form-group col-md-3 select_sm">
+                    <label>Select Type</label>
+                    <select class="form-control select2" name="item_type" id="item_type" data-placeholder="Select Type">
+                      <option value="">Select Type</option>
+                      <option <?php if(isset($item_info) && $item_info['item_type'] == 'Goods'){ echo 'selected'; } ?>>Goods</option>
+                      <option <?php if(isset($item_info) && $item_info['item_type'] == 'Services'){ echo 'selected'; } ?>>Services</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-3 select_sm">
+                    <label>Select Company Name</label>
+                    <select class="form-control select2" name="item_type" id="item_type" data-placeholder="Select Company Name">
+                      <!-- <option value="">Select Company Name</option>
+                      <option <?php if(isset($item_info) && $item_info['item_type'] == 'Goods'){ echo 'selected'; } ?>>Goods</option>
+                      <option <?php if(isset($item_info) && $item_info['item_type'] == 'Services'){ echo 'selected'; } ?>>Services</option> -->
+                    </select>
+                  </div>
+
                   <div class="form-group col-md-6">
                     <label>Item Name*</label>
                     <input type="text" class="form-control form-control-sm" name="item_name" id="item_name" value="<?php if(isset($item_info)){ echo $item_info['item_name']; } ?>" placeholder="" required>
