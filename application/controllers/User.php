@@ -1499,6 +1499,120 @@ class User extends CI_Controller{
                       $this->load->view('Include/footer');
                     }
 
+                    /******************************Branch Information  ****************************/
+                      public function branch_information_list(){
+                        $out_user_id = $this->session->userdata('out_user_id');
+                        $out_company_id = $this->session->userdata('out_company_id');
+                        $out_roll_id = $this->session->userdata('out_roll_id');
+                        if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                        $data['branch_information_list'] = $this->User_Model->user_list($out_company_id);
+                        $this->load->view('Include/head',$data);
+                        $this->load->view('Include/navbar',$data);
+                        $this->load->view('User/branch_information_list',$data);
+                        $this->load->view('Include/footer',$data);
+                      }
+
+
+                      public function branch_information(){
+                        $out_user_id = $this->session->userdata('out_user_id');
+                        $out_company_id = $this->session->userdata('out_company_id');
+                        $out_roll_id = $this->session->userdata('out_roll_id');
+                        if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                        $this->load->view('Include/head');
+                        $this->load->view('Include/navbar');
+                        $this->load->view('User/branch_information');
+                        $this->load->view('Include/footer');
+                      }
+
+                      /******************************Account Information  ****************************/
+                        public function account_information_list(){
+                          $out_user_id = $this->session->userdata('out_user_id');
+                          $out_company_id = $this->session->userdata('out_company_id');
+                          $out_roll_id = $this->session->userdata('out_roll_id');
+                          if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                          $data['account_information_list'] = $this->User_Model->user_list($out_company_id);
+                          $this->load->view('Include/head',$data);
+                          $this->load->view('Include/navbar',$data);
+                          $this->load->view('User/account_information_list',$data);
+                          $this->load->view('Include/footer',$data);
+                        }
+
+
+                        public function account_information(){
+                          $out_user_id = $this->session->userdata('out_user_id');
+                          $out_company_id = $this->session->userdata('out_company_id');
+                          $out_roll_id = $this->session->userdata('out_roll_id');
+                          if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                          $this->load->view('Include/head');
+                          $this->load->view('Include/navbar');
+                          $this->load->view('User/account_information');
+                          $this->load->view('Include/footer');
+                        }
+
+                        /******************************Item Information  ****************************/
+                          public function item_information_list(){
+                            $out_user_id = $this->session->userdata('out_user_id');
+                            $out_company_id = $this->session->userdata('out_company_id');
+                            $out_roll_id = $this->session->userdata('out_roll_id');
+                            if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                            $data['item_information_list'] = $this->User_Model->user_list($out_company_id);
+                            $this->load->view('Include/head',$data);
+                            $this->load->view('Include/navbar',$data);
+                            $this->load->view('User/item_information_list',$data);
+                            $this->load->view('Include/footer',$data);
+                          }
+
+
+                          public function item_information(){
+                            $out_user_id = $this->session->userdata('out_user_id');
+                            $out_company_id = $this->session->userdata('out_company_id');
+                            $out_roll_id = $this->session->userdata('out_roll_id');
+                            if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                            $this->load->view('Include/head');
+                            $this->load->view('Include/navbar');
+                            $this->load->view('User/item_information');
+                            $this->load->view('Include/footer');
+                          }
+
+                          /******************************Additional Field Information  ****************************/
+                            public function additional_field_list(){
+                              $out_user_id = $this->session->userdata('out_user_id');
+                              $out_company_id = $this->session->userdata('out_company_id');
+                              $out_roll_id = $this->session->userdata('out_roll_id');
+                              if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                              $data['additional_field_list'] = $this->User_Model->user_list($out_company_id);
+                              $this->load->view('Include/head',$data);
+                              $this->load->view('Include/navbar',$data);
+                              $this->load->view('User/additional_field_list',$data);
+                              $this->load->view('Include/footer',$data);
+                            }
+
+
+                            public function additional_field(){
+                              $out_user_id = $this->session->userdata('out_user_id');
+                              $out_company_id = $this->session->userdata('out_company_id');
+                              $out_roll_id = $this->session->userdata('out_roll_id');
+                              if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                              $this->load->view('Include/head');
+                              $this->load->view('Include/navbar');
+                              $this->load->view('User/additional_field');
+                              $this->load->view('Include/footer');
+                            }
+
+
+                            /******************************User Permission  ****************************/
+                              public function user_permission(){
+                                $out_user_id = $this->session->userdata('out_user_id');
+                                $out_company_id = $this->session->userdata('out_company_id');
+                                $out_roll_id = $this->session->userdata('out_roll_id');
+                                if($out_user_id == '' && $out_company_id == ''){ header('location:'.base_url().'User'); }
+                                $data['additional_field_list'] = $this->User_Model->user_list($out_company_id);
+                                $this->load->view('Include/head',$data);
+                                $this->load->view('Include/navbar',$data);
+                                $this->load->view('User/user_permission',$data);
+                                $this->load->view('Include/footer',$data);
+                              }
+
 
 
 /*******************************  Check Duplication  ****************************/
